@@ -2,6 +2,7 @@
 # a place to keep variables, functions, etc. relevant across numerous scripts
 
 # load packages
+library(zoo)
 library(tidyverse)
 library(patchwork)
 library(dataRetrieval)

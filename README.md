@@ -7,4 +7,10 @@ Related repository: [samzipper/ArkAtLarned](https://github.com/samzipper/ArkAtLa
 
 ## code/
 
- - `Data_*` = These files download and/or clean the data type noted in the `*`.
+ - `Data_*` = These files download and/or clean the data type noted in the `*`.'
+
+## data/
+
+*Note:* Data files too big for git are stored on the KGS Geohydrology snap server: `\\GHFILES\Common\Larned Research Site\`
+
+ - `Streamflow+Stage_Daily_Raw.csv` = raw daily streamflow and stream stage
