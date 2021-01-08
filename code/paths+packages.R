@@ -5,10 +5,16 @@
 library(tidyverse)
 library(patchwork)
 library(dataRetrieval)
+library(lubridate)
 options(dplyr.summarise.inform=F)   # suppress summarize info
+ncores <- (parallel::detectCores() - 1)  # number of cores to use for any parallel stuff
 
-# number of cores to use
-ncores <- (parallel::detectCores() - 1)
+## info about site/analysis
+USGS_gage <- "07141220"   # USGS gage ID for Ark @ Larned
+last_date <- "2020-12-31" # when analysis should end
+
+## relevant paths
+dir_data <- "Z:/Common/Larned Research Site/data"  # location for storing big files
 
 ## color palettes
 # categorical color palette from https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
