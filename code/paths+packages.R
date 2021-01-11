@@ -3,6 +3,7 @@
 
 # load packages
 library(zoo)
+library(rnoaa)
 library(tidyverse)
 library(patchwork)
 library(dataRetrieval)
