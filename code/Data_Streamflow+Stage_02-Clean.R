@@ -71,9 +71,31 @@ ggplot(daily_clean[3083:3111,], aes(x = Date, y = stage_ft)) + geom_point()
 # look like linear interpolation will do fine, use that
 daily_clean$stage_ft[3083:3111] <- na.approx(daily_clean$stage_ft[3083:3111])
 
+## calculate stage in meters
+daily_clean$stage_m <- daily_clean$stage_ft*0.3048
+daily_clean$stage_masl <- daily_clean$stage_ft + 592.327  # datum is in m above NGVD29, from USGS page
+daily_clean$discharge_cms <- daily_clean$discharge_cfs*(0.3048^3)
+
+## identify readings where it is just air, set to -9999
+# this is based on manual inspection of graph
+ggplot(daily_clean, aes(x = Date, y = stage_m, color = (discharge_cms==0))) +
+  geom_point() +
+  geom_hline(yintercept = 1.15)
+
+# set to -9999 for no data
+daily_clean$stage_masl[daily_clean$stage_m < 0.777 & year(daily_clean$Date) < 2010] <- -9999
+daily_clean$stage_masl[daily_clean$stage_m < 0.899 & year(daily_clean$Date) > 2010] <- -9999
+daily_clean$stage_m[daily_clean$stage_m < 0.777 & year(daily_clean$Date) < 2010] <- -9999
+daily_clean$stage_m[daily_clean$stage_m < 0.899 & year(daily_clean$Date) > 2010] <- -9999
+
 # plot/investigate
-ggplot(daily_clean, aes(x = Date, y = stage_ft, color = stage_cd)) +
+ggplot(subset(daily_clean, stage_m != -9999), aes(x = Date, y = stage_masl, color = (discharge_cfs==0))) +
   geom_point()
 
-ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = discharge_cd)) +
+ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = (discharge_cfs==0))) +
   geom_point()
+
+## save output
+daily_clean %>% 
+  dplyr::select(Date, stage_masl, stage_cd, discharge_cms, discharge_cd) %>% 
+  readr::write_csv(file.path("data", "Streamflow+Stage_Daily_Clean.csv"))
