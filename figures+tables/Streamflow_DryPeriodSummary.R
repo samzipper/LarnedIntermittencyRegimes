@@ -1,4 +1,5 @@
 ## Streamflow_DryPeriodSummary.R
+# Requires output from the script Streamflow+Stage_03-IdentifyDryPeriods.R
 
 source(file.path("code", "paths+packages.R"))
 

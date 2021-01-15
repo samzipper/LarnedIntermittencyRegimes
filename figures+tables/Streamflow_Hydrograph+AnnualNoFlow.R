@@ -1,4 +1,5 @@
 ## Streamflow_Hydrograph+AnnualNoFlow.R
+# Requires output from the script Streamflow+Stage_02-Clean.R and Streamflow+Stage_03-IdentifyDryPeriods.R
 
 source(file.path("code", "paths+packages.R"))
 
