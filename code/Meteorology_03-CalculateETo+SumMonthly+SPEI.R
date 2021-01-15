@@ -141,7 +141,7 @@ p_ETo_d <-
 (p_ETo_mo + p_ETo_d) +
   plot_layout(ncol = 2) +
   plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")") +
-  ggsave(file.path("figures+tables", "Data_Meteorology_03-EToComparison.png"),
+  ggsave(file.path("figures+tables", "Meteorology_03-EToComparison.png"),
          width = 190, height = 95, units = "mm")
 
 # stats for overall fit between mesonet and ghcn
