@@ -22,4 +22,7 @@ inst_raw <-
 
 ## save data
 write_csv(daily_raw, file.path("data", "Streamflow+Stage_Daily_Raw.csv"))
-write_csv(inst_raw, file.path(dir_data, "streamflow_stage", "raw", "Streamflow+Stage-Inst_Raw.csv"))  # too big for git repository
+
+inst_raw %>% 
+  dplyr::select(-agency_cd, -tz_cd) %>% 
+  write_csv(file.path(dir_data, "streamflow_stage", "raw", "Streamflow+Stage_Inst_Raw.csv"))  # too big for git repository
