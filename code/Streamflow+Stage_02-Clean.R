@@ -22,12 +22,12 @@ inst_raw <-
                 Date = date(datetime_local))
 
 #### daily
-# plot/investigate
-ggplot(daily_raw, aes(x = Date, y = stage_ft, color = stage_cd)) +
-  geom_point()
-
-ggplot(daily_raw, aes(x = Date, y = discharge_cfs, color = discharge_cd)) +
-  geom_point()
+# # plot/investigate
+# ggplot(daily_raw, aes(x = Date, y = stage_ft, color = stage_cd)) +
+#   geom_point()
+# 
+# ggplot(daily_raw, aes(x = Date, y = discharge_cfs, color = discharge_cd)) +
+#   geom_point()
 
 # for daily data, need to fill in discharge for 1998-08-01 to 1998-09-30; do this based on the first year of data
 daily_missing_1998 <- subset(daily_raw, Date <= ymd("1998-09-30")) %>% 
@@ -55,9 +55,9 @@ i_missing_lm <- which(is.na(daily_combo$discharge_cfs))
 daily_combo$discharge_cfs[i_missing_lm] <- 10^predict(lm_low, daily_combo[i_missing_lm, ])
 daily_combo_filled <- subset(daily_combo, Date <= ymd("1998-09-30")) %>% arrange(Date)
 
-# inspect fit
-ggplot(daily_combo, aes(x = stage_ft, y = discharge_cfs)) +
-  geom_point()
+# # inspect fit
+# ggplot(daily_combo, aes(x = stage_ft, y = discharge_cfs)) +
+#   geom_point()
 
 ## make clean data frame
 daily_clean <- 
@@ -90,26 +90,26 @@ daily_clean$discharge_cfs <- na.approx(daily_clean$discharge_cfs, maxgap = 3)
 daily_clean$stage_ft <- na.approx(daily_clean$stage_ft, maxgap = 3)
 
 ## two remaining chunks of stage data missing: 2699:2706 and 3093:3101
-which(is.na(daily_clean$stage_ft))
+# which(is.na(daily_clean$stage_ft))
 # for 2699:2706, discharge is 0 the whole time and stage is basically the same before (2.50)/after (2.51), so just set to 2.51
 daily_clean$stage_ft[2699:2706] <- 2.51
 
-# for 3093:3101, it is in the middle of a recession; plot 10 days before/after
-ggplot(daily_clean[3083:3111,], aes(x = Date, y = stage_ft)) + geom_point()
+# # for 3093:3101, it is in the middle of a recession; plot 10 days before/after
+# ggplot(daily_clean[3083:3111,], aes(x = Date, y = stage_ft)) + geom_point()
 
 # look like linear interpolation will do fine, use that
 daily_clean$stage_ft[3083:3111] <- na.approx(daily_clean$stage_ft[3083:3111])
 
 ## convert to metric
 daily_clean$stage_m <- daily_clean$stage_ft*0.3048
-daily_clean$stage_masl <- daily_clean$stage_ft + 592.327  # datum is in m above NGVD29, from USGS page
+daily_clean$stage_masl <- daily_clean$stage_m + 592.327  # datum is in m above NGVD29, from USGS page
 daily_clean$discharge_cms <- daily_clean$discharge_cfs*(0.3048^3)
 
 ## identify readings where it is just air, set to -9999
-# this is based on manual inspection of graph
-ggplot(daily_clean, aes(x = Date, y = stage_m, color = (discharge_cms==0))) +
-  geom_point() +
-  geom_hline(yintercept = 1.15)
+# # this is based on manual inspection of graph
+# ggplot(daily_clean, aes(x = Date, y = stage_m, color = (discharge_cms==0))) +
+#   geom_point() +
+#   geom_hline(yintercept = 1.15)
 
 # set to -9999 for no data
 daily_clean$stage_masl[daily_clean$stage_m < 0.777 & year(daily_clean$Date) < 2010] <- -9999
@@ -117,12 +117,12 @@ daily_clean$stage_masl[daily_clean$stage_m < 0.899 & year(daily_clean$Date) > 20
 daily_clean$stage_m[daily_clean$stage_m < 0.777 & year(daily_clean$Date) < 2010] <- -9999
 daily_clean$stage_m[daily_clean$stage_m < 0.899 & year(daily_clean$Date) > 2010] <- -9999
 
-# plot/investigate
-ggplot(subset(daily_clean, stage_m != -9999), aes(x = Date, y = stage_masl, color = (discharge_cfs==0))) +
-  geom_point()
-
-ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = (discharge_cfs==0))) +
-  geom_point()
+# # plot/investigate
+# ggplot(subset(daily_clean, stage_m != -9999), aes(x = Date, y = stage_masl, color = (discharge_cfs==0))) +
+#   geom_point()
+# 
+# ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = (discharge_cfs==0))) +
+#   geom_point()
 
 ## save output
 daily_clean %>% 
@@ -158,10 +158,10 @@ j_missing_q <- which(is.na(inst_clean$discharge_cfs))
 j_missing_s <- which(is.na(inst_clean$stage_ft))
 j_missing_both <- intersect(j_missing_q, j_missing_s)
 
-# pre-2007: gap-fill stage from discharge based on daily data (because no instantaneous discharge exists)
-ggplot(subset(daily_raw, Date <= ymd("2007-10-02")), 
-       aes(x = stage_ft, y = discharge_cfs, color = factor(year(Date)))) + 
-  geom_point()
+# # pre-2007: gap-fill stage from discharge based on daily data (because no instantaneous discharge exists)
+# ggplot(subset(daily_raw, Date <= ymd("2007-10-02")), 
+#        aes(x = stage_ft, y = discharge_cfs, color = factor(year(Date)))) + 
+#   geom_point()
 
 lut_sfromq_pre2007 <- 
   daily_raw %>% 
@@ -173,8 +173,8 @@ lut_sfromq_pre2007 <-
   dplyr::summarize(stage_mean = mean(stage_ft)) %>% 
   arrange(discharge_cfs)
 
-ggplot(lut_sfromq_pre2007, aes(x = stage_mean, y = discharge_cfs)) + 
-  geom_point()
+# ggplot(lut_sfromq_pre2007, aes(x = stage_mean, y = discharge_cfs)) + 
+#   geom_point()
 
 af_sfromq_pre2007 <- approxfun(x = lut_sfromq_pre2007$discharge_cfs,
                                y = lut_sfromq_pre2007$stage_mean,
@@ -194,8 +194,8 @@ lut_qfroms_pre2015 <-
   dplyr::summarize(discharge_mean = mean(discharge_cfs)) %>% 
   arrange(stage_ft)
 
-ggplot(lut_qfroms_pre2015, aes(x = stage_ft, y = discharge_mean)) + 
-  geom_point()
+# ggplot(lut_qfroms_pre2015, aes(x = stage_ft, y = discharge_mean)) + 
+#   geom_point()
 
 # use look up table and interpolate between look-up table values
 af_qfroms <- approxfun(x = lut_qfroms_pre2015$stage_ft,
@@ -228,25 +228,25 @@ inst_clean$stage_cd[j_missing_s_pre2015] <- "Gapfill"
 j_missing_q <- which(is.na(inst_clean$discharge_cfs))
 j_missing_s <- which(is.na(inst_clean$stage_ft))
 j_missing_both <- intersect(j_missing_q, j_missing_s)
-inst_clean %>% 
-  tidyr::pivot_longer(cols = c("stage_ft", "discharge_cfs")) %>% 
-  ggplot(aes(x = Date, y = value)) +
-  geom_point() +
-  facet_wrap(~name, scales = "free_y", ncol = 1)
-qplot(inst_clean$Year[j_missing_q])
-qplot(inst_clean$Year[j_missing_s])
+# inst_clean %>% 
+#   tidyr::pivot_longer(cols = c("stage_ft", "discharge_cfs")) %>% 
+#   ggplot(aes(x = Date, y = value)) +
+#   geom_point() +
+#   facet_wrap(~name, scales = "free_y", ncol = 1)
+# qplot(inst_clean$Year[j_missing_q])
+# qplot(inst_clean$Year[j_missing_s])
 
 ## post-2015 gap fill
 # stage from discharge
 j_missing_s_post2015 <- which(is.na(inst_clean$stage_ft) & inst_clean$Year > 2015)
-unique(inst_clean$Date[j_missing_s_post2015]) #2019-03-20 and 2019-03-21
-min(inst_clean$discharge_cfs[j_missing_s_post2015])
-max(inst_clean$discharge_cfs[j_missing_s_post2015])
-
-ggplot(subset(inst_clean, Date > ymd("2019-03-13") & Date < ymd("2019-03-28") & 
-                stage_cd != "Gapfill" & discharge_cd != "Gapfill"), 
-       aes(x = stage_ft, y = discharge_cfs, color = factor(Year))) + 
-  geom_point()
+# unique(inst_clean$Date[j_missing_s_post2015]) #2019-03-20 and 2019-03-21
+# min(inst_clean$discharge_cfs[j_missing_s_post2015])
+# max(inst_clean$discharge_cfs[j_missing_s_post2015])
+# 
+# ggplot(subset(inst_clean, Date > ymd("2019-03-13") & Date < ymd("2019-03-28") & 
+#                 stage_cd != "Gapfill" & discharge_cd != "Gapfill"), 
+#        aes(x = stage_ft, y = discharge_cfs, color = factor(Year))) + 
+#   geom_point()
 
 lut_sfromq_post2015 <- 
   inst_clean %>% 
@@ -264,24 +264,24 @@ af_sfromq_post2015 <- approxfun(x = lut_sfromq_post2015$discharge_cfs,
                        na.rm = T)
 inst_clean$stage_ft[j_missing_s_post2015] <- af_sfromq_post2015(inst_clean$discharge_cfs[j_missing_s_post2015])
 
-ggplot(subset(inst_clean, Date > ymd("2019-03-13") & Date < ymd("2019-03-28")), 
-       aes(x = datetime_local, y = stage_ft, color = stage_cd, group = 1)) + 
-  geom_line()
+# ggplot(subset(inst_clean, Date > ymd("2019-03-13") & Date < ymd("2019-03-28")), 
+#        aes(x = datetime_local, y = stage_ft, color = stage_cd, group = 1)) + 
+#   geom_line()
 
 # discharge from stage
 j_missing_q_post2015 <- which(is.na(inst_clean$discharge_cfs) & inst_clean$Year > 2015)
-unique(inst_clean$Date[j_missing_q_post2015]) # 2016-08-17 to 2016-09-06, 2017-12-29 to 2018-01-25
-
-ggplot(subset(daily_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")),
-       aes(x = Date, y = discharge_cfs)) +
-  geom_line()
-ggplot(subset(daily_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")),
-       aes(x = Date, y = stage_ft)) +
-  geom_line()
-ggplot(subset(inst_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13") & 
-                stage_cd != "Gapfill" & discharge_cd != "Gapfill"), 
-       aes(x = stage_ft, y = discharge_cfs, color = factor(Year))) + 
-  geom_point()
+# unique(inst_clean$Date[j_missing_q_post2015]) # 2016-08-17 to 2016-09-06, 2017-12-29 to 2018-01-25
+# 
+# ggplot(subset(daily_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")),
+#        aes(x = Date, y = discharge_cfs)) +
+#   geom_line()
+# ggplot(subset(daily_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")),
+#        aes(x = Date, y = stage_ft)) +
+#   geom_line()
+# ggplot(subset(inst_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13") & 
+#                 stage_cd != "Gapfill" & discharge_cd != "Gapfill"), 
+#        aes(x = stage_ft, y = discharge_cfs, color = factor(Year))) + 
+#   geom_point()
 
 lut_qfroms_2016 <- 
   inst_clean %>% 
@@ -293,8 +293,8 @@ lut_qfroms_2016 <-
   dplyr::summarize(discharge_mean = mean(discharge_cfs)) %>% 
   arrange(stage_ft)
 
-ggplot(lut_qfroms_2016, aes(x = stage_ft, y = discharge_mean)) + 
-  geom_point()
+# ggplot(lut_qfroms_2016, aes(x = stage_ft, y = discharge_mean)) + 
+#   geom_point()
 
 af_qfroms_2016 <- approxfun(x = lut_qfroms_2016$stage_ft,
                             y = lut_qfroms_2016$discharge_mean,
@@ -303,23 +303,23 @@ af_qfroms_2016 <- approxfun(x = lut_qfroms_2016$stage_ft,
 j_missing_q_2016 <- which(is.na(inst_clean$discharge_cfs) & inst_clean$Year == 2016)
 inst_clean$discharge_cfs[j_missing_q_2016] <- af_qfroms_2016(inst_clean$stage_ft[j_missing_q_2016])
 
-ggplot(subset(inst_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")), 
-       aes(x = datetime_local, y = stage_ft, color = stage_cd)) + 
-  geom_point()
-ggplot(subset(inst_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")), 
-       aes(x = datetime_local, y = discharge_cfs, color = discharge_cd, group = 1)) + 
-  geom_line()
-
-ggplot(subset(daily_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-09")),
-       aes(x = Date, y = discharge_cfs)) +
-  geom_line()
-ggplot(subset(daily_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-09")),
-       aes(x = Date, y = stage_ft)) +
-  geom_line()
-ggplot(subset(inst_clean, Date >= ymd("2018-01-01") & Date <= ymd("2018-12-31") &  # only 2018 data look reasonable
-                stage_cd != "Gapfill" & discharge_cd != "Gapfill"), 
-       aes(x = stage_ft, y = discharge_cfs, color = factor(Year))) + 
-  geom_point()
+# ggplot(subset(inst_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")), 
+#        aes(x = datetime_local, y = stage_ft, color = stage_cd)) + 
+#   geom_point()
+# ggplot(subset(inst_clean, Date >= ymd("2016-08-10") & Date <= ymd("2016-09-13")), 
+#        aes(x = datetime_local, y = discharge_cfs, color = discharge_cd, group = 1)) + 
+#   geom_line()
+# 
+# ggplot(subset(daily_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-09")),
+#        aes(x = Date, y = discharge_cfs)) +
+#   geom_line()
+# ggplot(subset(daily_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-09")),
+#        aes(x = Date, y = stage_ft)) +
+#   geom_line()
+# ggplot(subset(inst_clean, Date >= ymd("2018-01-01") & Date <= ymd("2018-12-31") &  # only 2018 data look reasonable
+#                 stage_cd != "Gapfill" & discharge_cd != "Gapfill"), 
+#        aes(x = stage_ft, y = discharge_cfs, color = factor(Year))) + 
+#   geom_point()
 
 lut_qfroms_2018 <-  # use 2018
   inst_clean %>% 
@@ -338,18 +338,18 @@ af_qfroms_2018 <- approxfun(x = lut_qfroms_2018$stage_ft,
 j_missing_q_2018 <- which(is.na(inst_clean$discharge_cfs) & inst_clean$Date >= ymd("2017-12-22") & inst_clean$Date <= ymd("2018-02-02"))
 inst_clean$discharge_cfs[j_missing_q_2018] <- af_qfroms_2018(inst_clean$stage_ft[j_missing_q_2018])
 
-ggplot(subset(inst_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-02")), 
-       aes(x = datetime_local, y = stage_ft, color = stage_cd)) + 
-  geom_point()
-ggplot(subset(inst_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-02")), 
-       aes(x = datetime_local, y = discharge_cfs, color = discharge_cd, group = 1)) + 
-  geom_line()
+# ggplot(subset(inst_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-02")), 
+#        aes(x = datetime_local, y = stage_ft, color = stage_cd)) + 
+#   geom_point()
+# ggplot(subset(inst_clean, Date >= ymd("2017-12-22") & Date <= ymd("2018-02-02")), 
+#        aes(x = datetime_local, y = discharge_cfs, color = discharge_cd, group = 1)) + 
+#   geom_line()
 
 ## missing 2014 Q data - it should just be = 0
 j_missing_q_2015 <- which(is.na(inst_clean$discharge_cfs) & inst_clean$Year == 2015)
-unique(inst_clean$Date[j_missing_q_2015])
-min(inst_clean$stage_ft[j_missing_q_2015]) # 2 corresponds to no stage data
-max(inst_clean$stage_ft[j_missing_q_2015]) # 2 corresponds to no stage data
+# unique(inst_clean$Date[j_missing_q_2015])
+# min(inst_clean$stage_ft[j_missing_q_2015]) # 2 corresponds to no stage data
+# max(inst_clean$stage_ft[j_missing_q_2015]) # 2 corresponds to no stage data
 inst_clean$discharge_cfs[j_missing_q_2015] <- 0
 
 ## see what's still missing
@@ -377,20 +377,20 @@ lut_sfromq_highflow <-
 lm_sfromq_highflow <- lm(stage_mean ~ discharge_cfs, data = lut_sfromq_highflow)
 inst_clean$stage_ft[j_missing_justs] <- predict.lm(lm_sfromq_highflow, inst_clean[j_missing_justs, ])
 
-ggplot(subset(inst_clean, Date >= ymd("2007-07-15") & Date <= ymd("2007-07-17")),
-       aes(x = datetime_local, y = stage_ft, color = stage_cd)) + geom_point()
-
-## missing just discharge: 2005-02-15 to 2005-02-16, 2005-12-20 to 2005-12-27, 2006-11-29 to 2006-22-30
-# all of these have stage = 2, meaning no stage data (below bottom of stilling well) and discharge = 0
-unique(inst_clean$Date[j_missing_justq])
-unique(inst_clean$stage_ft[j_missing_justq])
+# ggplot(subset(inst_clean, Date >= ymd("2007-07-15") & Date <= ymd("2007-07-17")),
+#        aes(x = datetime_local, y = stage_ft, color = stage_cd)) + geom_point()
+# 
+# ## missing just discharge: 2005-02-15 to 2005-02-16, 2005-12-20 to 2005-12-27, 2006-11-29 to 2006-22-30
+# # all of these have stage = 2, meaning no stage data (below bottom of stilling well) and discharge = 0
+# unique(inst_clean$Date[j_missing_justq])
+# unique(inst_clean$stage_ft[j_missing_justq])
 inst_clean$discharge_cfs[j_missing_justq] <- 0
 
 ## see what's still missing:
 j_missing_q <- which(is.na(inst_clean$discharge_cfs))
 j_missing_s <- which(is.na(inst_clean$stage_ft))
 j_missing_both <- intersect(j_missing_q, j_missing_s)
-unique(inst_clean$Date[j_missing_both])
+# unique(inst_clean$Date[j_missing_both])
 
 ## for everything remaining, both stage and discharge are missing (though daily mean data exist)
 # assign the daily mean value for noon on that date, and linearly interpolate in between
@@ -406,16 +406,16 @@ inst_clean$discharge_cfs[match_daily_to_inst] <- daily_withNoons$discharge_cfs
 inst_clean$discharge_cfs <- na.approx(inst_clean$discharge_cfs, maxgap = max_gap_pts)
 inst_clean$stage_ft <- na.approx(inst_clean$stage_ft, maxgap = max_gap_pts)
 
-ggplot(subset(inst_clean, Date > ymd("2007-01-01") & Date <= ymd("2007-02-05")), 
-       aes(x = datetime_local, y = discharge_cfs)) +
-  geom_point()
-ggplot(subset(inst_clean, Date > ymd("2007-01-01") & Date <= ymd("2007-02-05")), 
-       aes(x = datetime_local, y = stage_ft)) +
-  geom_point()
+# ggplot(subset(inst_clean, Date > ymd("2007-01-01") & Date <= ymd("2007-02-05")), 
+#        aes(x = datetime_local, y = discharge_cfs)) +
+#   geom_point()
+# ggplot(subset(inst_clean, Date > ymd("2007-01-01") & Date <= ymd("2007-02-05")), 
+#        aes(x = datetime_local, y = stage_ft)) +
+#   geom_point()
 
 ## convert to metric
 inst_clean$stage_m <- inst_clean$stage_ft*0.3048
-inst_clean$stage_masl <- inst_clean$stage_ft + 592.327  # datum is in m above NGVD29, from USGS page
+inst_clean$stage_masl <- inst_clean$stage_m + 592.327  # datum is in m above NGVD29, from USGS page
 inst_clean$discharge_cms <- inst_clean$discharge_cfs*(0.3048^3)
 
 # set to -9999 for no data (use same levels as daily data)
@@ -424,23 +424,23 @@ inst_clean$stage_masl[inst_clean$stage_m < 0.899 & year(inst_clean$Date) > 2010]
 inst_clean$stage_m[inst_clean$stage_m < 0.777 & year(inst_clean$Date) < 2010] <- -9999
 inst_clean$stage_m[inst_clean$stage_m < 0.899 & year(inst_clean$Date) > 2010] <- -9999
 
-# plot/investigate
-ggplot(subset(inst_clean, stage_m != -9999), aes(x = datetime_local, y = stage_m, color = (discharge_cms==0))) +
-  geom_point()
-
-ggplot(subset(inst_clean, stage_m != -9999 & year(datetime_local) < 2004), 
-       aes(x = datetime_local, y = stage_m, color = (discharge_cms==0))) +
-  geom_point()
-
-ggplot(inst_clean, aes(x = datetime_local, y = discharge_cfs, color = (discharge_cfs==0))) +
-  geom_point()
-
-## inspect all data
-inst_clean %>% 
-  tidyr::pivot_longer(cols = c("stage_ft", "discharge_cfs")) %>% 
-  ggplot(aes(x = Date, y = value)) +
-  geom_point() +
-  facet_wrap(~name, scales = "free_y", ncol = 1)
+# # plot/investigate
+# ggplot(subset(inst_clean, stage_m != -9999), aes(x = datetime_local, y = stage_m, color = (discharge_cms==0))) +
+#   geom_point()
+# 
+# ggplot(subset(inst_clean, stage_m != -9999 & year(datetime_local) < 2004), 
+#        aes(x = datetime_local, y = stage_m, color = (discharge_cms==0))) +
+#   geom_point()
+# 
+# ggplot(inst_clean, aes(x = datetime_local, y = discharge_cfs, color = (discharge_cfs==0))) +
+#   geom_point()
+# 
+# ## inspect all data
+# inst_clean %>% 
+#   tidyr::pivot_longer(cols = c("stage_ft", "discharge_cfs")) %>% 
+#   ggplot(aes(x = Date, y = value)) +
+#   geom_point() +
+#   facet_wrap(~name, scales = "free_y", ncol = 1)
 
 # compare USGS daily means to means estimated from instantaneous data
 inst_daily_compare <-
@@ -452,11 +452,11 @@ inst_daily_compare <-
   dplyr::left_join(daily_clean, by = "Date") %>% 
   dplyr::mutate(Year = year(Date))
 
+# most of the poor fits are from pre-2015 where we don't have good stage data
 ggplot(inst_daily_compare, aes(x = discharge_cms, y = discharge_cms_mean, color = Year < 2015)) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1, color = "red")
 
-# most of the poor fits are from pre-2015 where we don't have good stage data
 ggplot(subset(inst_daily_compare, stage_m_mean > 0), 
        aes(x = stage_m, y = stage_m_mean, color = Year < 2015)) +
   geom_point() +
@@ -466,3 +466,16 @@ ggplot(subset(inst_daily_compare, stage_m_mean > 0),
 inst_clean %>% 
   dplyr::select(datetime_local, stage_masl, stage_cd, discharge_cms, discharge_cd) %>% 
   readr::write_csv(file.path(dir_data, "streamflow_stage", "processed", "Streamflow+Stage_Inst_Clean.csv"))
+
+# plot/inspect
+ggplot(subset(inst_clean, stage_m != -9999), aes(x = datetime_local, y = stage_m, color = (discharge_cms==0))) +
+  geom_point()
+
+ggplot(inst_clean, aes(x = datetime_local, y = discharge_cfs, color = (discharge_cfs==0))) +
+  geom_point()
+
+ggplot(subset(daily_clean, stage_m != -9999), aes(x = Date, y = stage_m, color = (discharge_cms==0))) +
+  geom_point()
+
+ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = (discharge_cfs==0))) +
+  geom_point()

@@ -16,13 +16,14 @@ df_all <-
   dplyr::left_join(df_met, df_stream, by = "date_ghcn") %>% 
   dplyr::left_join(df_gw, by = "date_ghcn")
 
-## met data goes back to 1904... start data 1 year before earliest streamflow measurement
+## met data goes back to 1904... start data before earliest streamflow measurement
+yrs_buffer <- 10
 date_min <- min(df_stream$date_ghcn)
 
 ## trim
 df_out <- 
   df_all %>% 
-  subset(date_ghcn >= (date_min - years(1)))
+  subset(date_ghcn >= (date_min - years(yrs_buffer)))
 
 ## save output
 readr::write_csv(df_out, file.path("data", "Timeseries_InputData.csv"))
