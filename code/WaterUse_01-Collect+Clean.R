@@ -10,7 +10,7 @@ sf_wells <- sf::st_read(file.path("data", "Spatial_Well+GageLocations.gpkg"))
 
 ## load water use data
 sf_wuse <- 
-  file.path(dir_data, "water_use", "processed", "WIMAS_WaterUse_1990to2018_Within10km.gpkg") %>% 
+  file.path(dir_data, "water_use", "processed", "WIMAS_WaterUse_1990to2019_Within10km.gpkg") %>% 
   sf::st_read()
 
 ## calculate distance from wells to site. just use the USGS gage to represent the site.
@@ -26,8 +26,8 @@ ggplot(sf_wuse, aes(color = dist_to_gage_m)) + geom_sf()
 # - gpkg file with PDIV locations and other well data that does not change by year
 # - csv file with annual water use, acres irrigated, etc.
 sf_wuse %>% 
-  dplyr::select(PDIV_ID, longitude, latitude, source, dist_to_gage_m) %>% 
-  sf::st_write(file.path("data", "WaterUse_DiversionLocations.gpkg"))
+  dplyr::select(PDIV_ID, long_nad83, long_nad83, source, dist_to_gage_m, hpa_aquifer) %>% 
+  sf::st_write(file.path("data", "WaterUse_DiversionLocations.gpkg"), append = F)
 
 df_wuse <-
   sf_wuse %>% 

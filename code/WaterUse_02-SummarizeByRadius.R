@@ -38,9 +38,13 @@ for (rad_m in rad_m_all){
 readr::write_csv(df_wuse_yr, file.path("data", "WaterUse_AnnualByRadius.csv"))
 
 # look at water use by volume for a given radius
-ggplot(subset(df_wuse_yr, radius_m = 5000), aes(x = Year, y = WaterUse_m3)) + geom_point() + geom_line()
+ggplot(subset(df_wuse_yr, radius_m == 5000), aes(x = Year, y = WaterUse_m3)) + geom_point() + geom_line()
 
 # look at water use as z-score for all radius
 ggplot(df_wuse_yr, aes(x = Year, y = WaterUse_z, color = factor(radius_m))) +
+  geom_hline(yintercept = 0, color = col.gray) +
+  geom_point() + geom_line()
+
+ggplot(subset(df_wuse_yr, radius_m <= 3000), aes(x = Year, y = WaterUse_z, color = factor(radius_m))) +
   geom_hline(yintercept = 0, color = col.gray) +
   geom_point() + geom_line()
