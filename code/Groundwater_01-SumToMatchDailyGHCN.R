@@ -9,8 +9,14 @@
 ## prep workspace
 source(file.path("code", "paths+packages.R"))
 
+# subdaily folder
+dir_subdaily <- file.path(dir_data, "monitoring_wells", "processed")
+
 ## which wells to summarize?
-wells_all <- c("LWPH4a", "LWPH4b", "LWPH4c")
+wells_files <- list.files(dir_subdaily, pattern = "*_Subdaily.csv")
+wells_all <- gsub("_Subdaily.csv", "", wells_files)
+wells_all <- wells_all[wells_all != "ArkRiver"]
+#wells_all <- c("LWPH4a", "LWPH4b", "LWPH4c")
 
 ## what time should a day start/end?
 # use 0700 AM local time to match the GHCN-D daily dataset
@@ -20,7 +26,7 @@ hr_start <- 7
 ## load data
 for (w in wells_all){
   # load raw subdaily data
-  df_w <- readr::read_csv(file.path(dir_data, "monitoring_wells", "processed", paste0(w, "_Subdaily.csv")))
+  df_w <- readr::read_csv(file.path(dir_subdaily, paste0(w, "_Subdaily.csv")))
   
   # identify the day matching ghcn data
   df_w$hr <- lubridate::hour(df_w$datetime)
@@ -38,14 +44,16 @@ for (w in wells_all){
     df_day <- df_w_day
     colnames(df_day)[colnames(df_day)=="waterlevel_m"] <- w
   } else {
-    df_day <- dplyr::left_join(df_day, df_w_day, by = "date_ghcn")
+    df_day <- dplyr::full_join(df_day, df_w_day, by = "date_ghcn")
     colnames(df_day)[colnames(df_day)=="waterlevel_m"] <- w
   }
   
 }
 
 # save
-readr::write_csv(df_day, file.path("data", "Groundwater_WaterLevels-DailyGHCN.csv"))
+df_day %>% 
+  dplyr::arrange(date_ghcn) %>% 
+  readr::write_csv(file.path("data", "Groundwater_WaterLevels-DailyGHCN.csv"))
 
 # plot
 df_day %>% 
