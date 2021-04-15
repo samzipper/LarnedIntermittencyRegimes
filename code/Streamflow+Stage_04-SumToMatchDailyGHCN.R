@@ -41,3 +41,7 @@ df_day %>%
   ggplot(aes(x = date_ghcn, y = value)) +
   geom_line() +
   facet_wrap(~variable, scale = "free_y", ncol = 1)
+
+ggplot(df_day, aes(x = stage_masl, y = discharge_cms, color = discharge_cms <= 0)) +
+  geom_point() +
+  geom_vline(xintercept = 593.45, color = "blue")
