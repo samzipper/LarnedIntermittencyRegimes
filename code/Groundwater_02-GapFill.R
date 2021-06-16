@@ -14,6 +14,12 @@ LWPH4_last <- max(df_day$date_ghcn[is.finite(df_day$LWPH4c) | is.finite(df_day$L
 
 df_LWPH4 <- df_day[df_day$date_ghcn >= LWPH4_first & df_day$date_ghcn <= LWPH4_last, ]
 
+# inspect data
+ggplot(df_LWPH4, aes(x = date_ghcn, y = LWPH4a)) + geom_point()
+
+# there is some bad data in LWPH4a... set to NA
+df_LWPH4$LWPH4a[df_LWPH4$date_ghcn >= ymd("2016-06-13") & df_LWPH4$date_ghcn <= ymd("2016-10-24")] <- NA
+
 ## gap-fill LWPH4c (High Plains Aquifer well)
 df_LWPH4$LWPH4c_source <- "Observed"
 
