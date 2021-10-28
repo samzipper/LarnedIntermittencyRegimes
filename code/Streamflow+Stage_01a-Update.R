@@ -11,7 +11,7 @@ inst_raw_old <- read_csv(file.path(dir_data, "streamflow_stage", "raw", "Streamf
                          col_types = "cTdcdc")
 
 ## download data
-update_start_date <- "2020-08-31" # daily_raw_old$Date[min(which(daily_raw_old$X_00060_00003_cd == "P"))]
+update_start_date <- "2020-12-07" # daily_raw_old$Date[min(which(daily_raw_old$X_00060_00003_cd == "P"))]
   
 # daily
 pCodes = c("00060", "00065") # discharge = 00060, stage = 00065

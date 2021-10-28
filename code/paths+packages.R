@@ -14,7 +14,8 @@ ncores <- (parallel::detectCores() - 1)  # number of cores to use for any parall
 
 ## info about site/analysis
 USGS_gage <- "07141220"   # USGS gage ID for Ark @ Larned
-last_date <- "2020-12-31" # when analysis should end
+first_date <- "1998-10-01" # when analysis should start
+last_date <- "2021-09-30"  # when analysis should end
 lat_site <- 38.20369960324417  # bridge crossing, from Google Maps
 lon_site <- -99.00213883260135 # bridge crossing, from Google Maps
 

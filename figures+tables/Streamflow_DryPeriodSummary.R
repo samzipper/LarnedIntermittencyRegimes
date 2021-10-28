@@ -57,8 +57,10 @@ p_timing <-
   theme(legend.position = "bottom",
         legend.title = element_text(vjust = 1, hjust = 0.5))
 
-(p_length + p_timing) +
+p_combo <-
+  (p_length + p_timing) +
   plot_layout(ncol = 2) +
-  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")") +
-  ggsave(file.path("figures+tables", "Streamflow_DryPeriodSummary.png"),
-         width = 190, height = 100, units = "mm")
+  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
+
+ggsave(file.path("figures+tables", "Streamflow_DryPeriodSummary.png"),
+       p_combo, width = 190, height = 100, units = "mm")

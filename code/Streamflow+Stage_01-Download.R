@@ -21,7 +21,7 @@ inst_raw <-
                             endDate = last_date)
 
 ## save data
-write_csv(daily_raw, file.path("data", "Streamflow+Stage_Daily_Raw.csv"))
+write_csv(daily_raw, file.path("data", "Streamflow+Stage_Daily_Raw_new.csv"))
 
 inst_raw %>% 
   dplyr::select(-agency_cd, -tz_cd) %>% 

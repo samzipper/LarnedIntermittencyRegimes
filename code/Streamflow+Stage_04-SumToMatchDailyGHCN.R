@@ -18,8 +18,10 @@ df_w <- readr::read_csv(file.path(dir_data, "streamflow_stage", "processed", "St
 
 # identify the day matching ghcn data
 df_w$hr <- lubridate::hour(df_w$datetime_local)
-df_w$date_ghcn <- lubridate::date(df_w$datetime_local)
+df_w$date_ghcn <- 
+  lubridate::date(df_w$datetime_local)
 df_w$date_ghcn[df_w$hr >= hr_start] <- df_w$date_ghcn[df_w$hr >= hr_start] + days(1)
+df_w <- subset(df_w, date_ghcn <= ymd(last_date))
 
 # replace nodata flag with NAs
 nodata_value <- -9999
@@ -30,7 +32,8 @@ df_day <-
   df_w %>% 
   dplyr::group_by(date_ghcn) %>% 
   dplyr::summarize(discharge_cms = round(mean(discharge_cms, na.rm = T), 4),
-                   stage_masl = round(mean(stage_masl, na.rm = T), 4))
+                   stage_masl = round(mean(stage_masl, na.rm = T), 4)) %>% 
+  dplyr::mutate(WaterYear = year(date_ghcn + days(92)))
 
 # save
 readr::write_csv(df_day, file.path("data", "Streamflow+Stage_DailyGHCN.csv"))

@@ -4,8 +4,7 @@
 source(file.path("code", "paths+packages.R"))
 
 ## load data
-df_day <- readr::read_csv(file.path("data", "Streamflow+Stage_Daily_Clean.csv")) %>% 
-  dplyr::mutate(Year = year(Date))
+df_day <- readr::read_csv(file.path("data", "Streamflow+Stage_Daily_Clean.csv"))
 
 ## identify start and end of no-flow periods
 dates_noflow <- df_day$Date[df_day$discharge_cms==0]

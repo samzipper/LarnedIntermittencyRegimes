@@ -56,8 +56,7 @@ daily_combo$discharge_cfs[i_missing_lm] <- 10^predict(lm_low, daily_combo[i_miss
 daily_combo_filled <- subset(daily_combo, Date <= ymd("1998-09-30")) %>% arrange(Date)
 
 # # inspect fit
-# ggplot(daily_combo, aes(x = stage_ft, y = discharge_cfs)) +
-#   geom_point()
+# ggplot(daily_combo, aes(x = stage_ft, y = discharge_cfs)) + geom_point()
 
 ## make clean data frame
 daily_clean <- 
@@ -118,15 +117,15 @@ daily_clean$stage_m[daily_clean$stage_m < 0.777 & year(daily_clean$Date) < 2010]
 daily_clean$stage_m[daily_clean$stage_m < 0.899 & year(daily_clean$Date) > 2010] <- -9999
 
 # # plot/investigate
-# ggplot(subset(daily_clean, stage_m != -9999), aes(x = Date, y = stage_masl, color = (discharge_cfs==0))) +
-#   geom_point()
+# ggplot(subset(daily_clean, stage_m != -9999), aes(x = Date, y = stage_masl, color = (discharge_cfs==0))) + geom_point()
 # 
-# ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = (discharge_cfs==0))) +
-#   geom_point()
+# ggplot(daily_clean, aes(x = Date, y = discharge_cfs, color = (discharge_cfs==0))) + geom_point()
 
 ## save output
 daily_clean %>% 
-  dplyr::select(Date, stage_masl, stage_cd, discharge_cms, discharge_cd) %>% 
+  subset(Date >= ymd(first_date) & Date <= ymd(last_date)) %>% 
+  mutate(WaterYear = year(Date + days(92))) %>% 
+  dplyr::select(Date, WaterYear, stage_masl, stage_cd, discharge_cms, discharge_cd) %>% 
   readr::write_csv(file.path("data", "Streamflow+Stage_Daily_Clean.csv"))
 
 #### instantaneous
@@ -464,6 +463,7 @@ ggplot(subset(inst_daily_compare, stage_m_mean > 0),
 
 ## save instantaneous data
 inst_clean %>% 
+  subset(Date >= ymd(first_date) & Date <= ymd(last_date)) %>% 
   dplyr::select(datetime_local, stage_masl, stage_cd, discharge_cms, discharge_cd) %>% 
   readr::write_csv(file.path(dir_data, "streamflow_stage", "processed", "Streamflow+Stage_Inst_Clean.csv"))
 
