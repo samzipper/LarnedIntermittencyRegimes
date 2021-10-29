@@ -73,34 +73,3 @@ p_ts <-
 
 ggsave(file.path("figures+tables", "Streamflow_Hydrograph+AnnualNoFlow_Timeseries.png"),
        p_ts, width = 190, height = 140, units = "mm")
-
-## plots - histogram
-p_hist_mo <- 
-  ggplot(df_mo, aes(x = prc_noflow)) +
-  geom_histogram(breaks = seq(0, 1, 0.1), fill = col.cat.blu) +
-  scale_y_continuous(name = "Number of Months", expand = expansion(mult = c(0, 0.02))) +
-  scale_x_continuous(name = "No-Flow Days [% of Month]", 
-                     breaks = seq(0, 1, 0.2),
-                     labels = scales::percent, 
-                     expand = expansion(mult = 0)) +
-  theme(plot.margin = margin(t = 1, r = 10, b = 1, l = 1, unit = "pt"))
-
-p_hist_yr <- 
-  ggplot(df_yr, aes(x = prc_noflow)) +
-  geom_histogram(breaks = seq(0, 1, 0.1), fill = col.cat.blu) +
-  scale_y_continuous(name = "Number of Years", expand = expansion(mult = c(0, 0.02)),
-                     breaks = seq(0, 10, 2)) +
-  scale_x_continuous(name = "No-Flow Days [% of Water Year]", 
-                     breaks = seq(0, 1, 0.2),
-                     minor_breaks = seq(0, 1, 0.1),
-                     labels = scales::percent, 
-                     expand = expansion(mult = 0)) +
-  theme(plot.margin = margin(t = 1, r = 10, b = 1, l = 1, unit = "pt"))
-
-p_hist <-
-  (p_hist_yr + p_hist_mo) +
-  plot_layout(ncol = 1) +
-  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
-
-ggsave(file.path("figures+tables", "Streamflow_Hydrograph+AnnualNoFlow_Hist.png"),
-       p_hist, width = 190, height = 140, units = "mm")

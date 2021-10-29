@@ -1,4 +1,4 @@
-## Data_Meteorology_01-Download.R
+## Meteorology_01-Download.R
 
 source(file.path("code", "paths+packages.R"))
 
