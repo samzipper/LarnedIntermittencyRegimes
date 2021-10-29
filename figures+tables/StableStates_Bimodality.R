@@ -101,6 +101,9 @@ p_hist_yr <-
 ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Yr.png"),
        p_hist_yr, width = 190, height = 190, units = "mm")
 
+# stats on yearly skew
+sum(df_Q_yr$prc_noflow <= 0.1) + sum(df_Q_yr$prc_noflow >= 0.9)
+length(df_Q_yr$prc_noflow)
 
 ## plots - monthly histograms
 p_Q_mo <- 
