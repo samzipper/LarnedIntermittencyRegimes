@@ -40,7 +40,7 @@ p_hydrographs <-
                                        ymin = min_q, ymax = Inf), 
             color = "transparent", fill = col.cat.yel, alpha = 0.3) +
   geom_hline(yintercept = min_q, color = col.gray) +
-  scale_x_date(name = "Date", expand = c(0,0), date_labels = "%b %Y") +
+  scale_x_date(name = "Date", expand = c(0,0), date_labels = "%Y") +
   geom_line(data = df_day, aes(x = Date, y = discharge_forlog), color = col.cat.blu) +
   scale_y_log10(name = "Mean Daily Discharge [m\u00b3/s]", 
                 breaks = scales::trans_breaks("log10", function(x) 10^x),
@@ -58,14 +58,6 @@ p_dryprc <-
                      expand = expansion(mult = c(0.02,0.02))) +
   scale_x_continuous(name = "Water Year", expand = expansion(mult = c(0.01, 0.04)))
 
-p_dryprc_mo <-
-  ggplot(df_mo, aes(x = date_mid, y = prc_noflow)) +
-  geom_line() +
-  scale_y_continuous(name = "No-Flow Days [% of Month]",
-                     labels = scales::percent,
-                     expand = expansion(mult = c(0.02,0.02))) +
-  scale_x_date(name = "Date")
-
 p_ts <- 
   (p_hydrographs + p_dryprc) +
   plot_layout(ncol = 1) +
@@ -73,3 +65,12 @@ p_ts <-
 
 ggsave(file.path("figures+tables", "Streamflow_Hydrograph+AnnualNoFlow_Timeseries.png"),
        p_ts, width = 190, height = 140, units = "mm")
+
+## monthly no-flow days, not used: 
+p_dryprc_mo <-
+  ggplot(df_mo, aes(x = date_mid, y = prc_noflow)) +
+  geom_line() +
+  scale_y_continuous(name = "No-Flow Days [% of Month]",
+                     labels = scales::percent,
+                     expand = expansion(mult = c(0.02,0.02))) +
+  scale_x_date(name = "Date")
