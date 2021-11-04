@@ -23,6 +23,17 @@ rad_best <- 4000  # this is determined in script WaterUse_03-DisaggregateToDaily
 df_wuse_yr <- read_csv(file.path("data", "WaterUse_AnnualByRadius.csv")) %>% 
   subset(radius_m == rad_best & Year >= min(df_Q_day$WaterYear) & Year <= max(df_Q_day$WaterYear))
 
+# regime shifts
+df_regimes <- read_csv(file.path("data", "RegimeShifts_rstars.csv"))
+df_regime_dates <- subset(df_regimes, ts_regime_shift != 0)
+df_regimes_startend <- tibble(
+  date_start = c(min(df_regimes$date_mid), df_regime_dates$date_mid),
+  date_end = c(df_regime_dates$date_mid, max(df_regimes$date_mid)),
+  regime_category = c("Wet", "Dry", "Wet", "Dry", "Wet")
+) %>% 
+  mutate(WaterYear_start = decimal_date(date_start + days(92)),
+         WaterYear_end = decimal_date(date_end + days(92)))
+
 ## summarize discharge by water year and month
 df_Q_yr <-
   df_Q_day %>% 
@@ -139,73 +150,128 @@ p_hist_mo <-
 ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Mo.png"),
        p_hist_mo, width = 190, height = 120, units = "mm")
 
+# combine annual water use with monthly discharge and met
+p_hist_mo.yr <-
+  (p_Q_mo + p_met_mo + p_wuse_yr) +
+  plot_layout(ncol = 1) +
+  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
+
+ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Mo+Yr.png"),
+       p_hist_mo.yr, width = 190, height = 190, units = "mm")
+
+# stats on monthly skew
+sum(df_Q_mo$prc_noflow <= 0.1) + sum(df_Q_mo$prc_noflow >= 0.9)
+length(df_Q_mo$prc_noflow)
+
 #### Timeseries jumps analysis
 
 ## monthly plots 
 
 p_Q_ts_mo <-
-  ggplot(df_Q_mo, aes(x = date_mid, y = prc_noflow)) +
-  geom_line(color = col.cat.blu) +
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_Q_mo, aes(x = date_mid, y = prc_noflow)) +
   scale_y_continuous(name = "No-Flow Days [% of Month]", labels = scales::percent) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_met_ts_mo <-
-  ggplot(df_met_mo, aes(x = date_mid, y = prcp_mm)) +
-  geom_col(fill = col.cat.blu, color = col.cat.blu) +
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_col(data = df_met_mo, aes(x = date_mid, y = prcp_mm), fill = "black", color = "black") +
   scale_y_continuous(name = "Monthly Precipitation [mm]", expand = expansion(mult = c(0,0.02))) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_SPEI_3mo <-
-  ggplot(df_met_mo, aes(x = date_mid, y = SPEI_3mo, fill = SPEI_3mo, color = SPEI_3mo)) +
-  geom_col() +
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_col(data = df_met_mo, aes(x = date_mid, y = SPEI_3mo), color = "black") +
   geom_hline(yintercept = 0, color = col.gray) +
   scale_y_continuous(name = "SPEI [3 mo]", limits = c(-2.6, 2.6)) +
   scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_gradient2(low = col.cat.red, mid = col.gray, high = col.cat.blu, limits = c(-2.6, 2.6), guide = "none") +
-  scale_color_gradient2(low = col.cat.red, mid = col.gray, high = col.cat.blu, limits = c(-2.6, 2.6), guide = "none")
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_SPEI_12mo <- 
-  ggplot(df_met_mo, aes(x = date_mid, y = SPEI_12mo, fill = SPEI_12mo, color = SPEI_12mo)) +
-  geom_col() +
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_col(data = df_met_mo, aes(x = date_mid, y = SPEI_12mo), color = "black") +
   geom_hline(yintercept = 0, color = col.gray) +
   scale_y_continuous(name = "SPEI [12 mo]", limits = c(-2.6, 2.6)) +
   scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_gradient2(low = col.cat.red, mid = col.gray, high = col.cat.blu, limits = c(-2.6, 2.6), guide = "none") +
-  scale_color_gradient2(low = col.cat.red, mid = col.gray, high = col.cat.blu, limits = c(-2.6, 2.6), guide = "none") 
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_ts_mo <-
-  (p_Q_ts_mo + p_met_ts_mo + p_SPEI_3mo + p_SPEI_12mo) +
-  plot_layout(ncol = 1) +
-  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
+  (p_Q_ts_mo + p_met_ts_mo) +
+  plot_layout(ncol = 1, guides = "collect") +
+  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")") &
+  theme(legend.position = "bottom")
 
 ggsave(file.path("figures+tables", "StableStates_Jumps-Ts-Mo.png"),
-       p_ts_mo, width = 190, height = 160, units = "mm")
+       p_ts_mo, width = 190, height = 120, units = "mm")
+
+# combine annual water use with monthly met and no-flow
+p_wuse_ts_mo.yr <-
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
+  geom_point(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
+  scale_y_continuous(name = "Annual Water Use [million m\u00b3]") +
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+
+p_ts_mo.yr <-
+  (p_Q_ts_mo + p_met_ts_mo + p_wuse_ts_mo.yr) +
+  plot_layout(ncol = 1, guides = "collect") +
+  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")") &
+  theme(legend.position = "bottom")
+
+ggsave(file.path("figures+tables", "StableStates_Jumps-Ts-Mo+Yr.png"),
+       p_ts_mo.yr, width = 190, height = 190, units = "mm")
 
 ## yearly plots
+df_regimes_startend$WaterYear_start[1] <- -Inf
+df_regimes_startend$WaterYear_end[5] <- Inf
 p_Q_ts_yr <-
-  ggplot(df_Q_yr, aes(x = WaterYear, y = prc_noflow)) +
-  geom_line(color = col.cat.blu) +
-  geom_point(color = col.cat.blu) +
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_Q_yr, aes(x = WaterYear, y = prc_noflow), color = "black") +
+  geom_point(data = df_Q_yr, aes(x = WaterYear, y = prc_noflow), color = "black") +
   scale_y_continuous(name = "No-Flow Days [% of Water Year]", labels = scales::percent) +
-  scale_x_continuous(name = "Water Year")
+  scale_x_continuous(name = "Water Year") +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_met_ts_yr <-
-  ggplot(df_met_yr, aes(x = WaterYear, y = prcp_mm)) +
-  geom_col(fill = col.cat.blu, color = col.cat.blu) +
-  scale_y_continuous(name = "Annual Precipitation [mm]", expand = expansion(mult = c(0,0.02))) +
-  scale_x_continuous(name = "Water Year")
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_met_yr, aes(x = WaterYear, y = prcp_mm)) +
+  geom_point(data = df_met_yr, aes(x = WaterYear, y = prcp_mm)) +
+  scale_y_continuous(name = "Annual Precipitation [mm]") +
+  scale_x_continuous(name = "Water Year") +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_wuse_ts_yr <-
-  ggplot(df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6)) +
-  geom_line(color = col.cat.blu) +
-  geom_point(color = col.cat.blu) +
+  ggplot() +
+  geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
+                                            fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = "black") +
+  geom_point(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = "black") +
   scale_y_continuous(name = "Water Use within 4 km [million m\u00b3]") +
-  scale_x_continuous(name = "Year")
+  scale_x_continuous(name = "Year", limits = c(min(df_Q_yr$WaterYear), max(df_Q_yr$WaterYear))) +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
 p_ts_yr <-
   (p_Q_ts_yr + p_met_ts_yr + p_wuse_ts_yr) +
-  plot_layout(ncol = 1) +
-  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
+  plot_layout(ncol = 1, guides = "collect") +
+  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")") &
+  theme(legend.position = "bottom")
 
 ggsave(file.path("figures+tables", "StableStates_Jumps-Ts-Yr.png"),
        p_ts_yr, width = 190, height = 190, units = "mm")
