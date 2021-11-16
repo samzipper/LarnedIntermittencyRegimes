@@ -5,11 +5,11 @@ source(file.path("code", "paths+packages.R"))
 
 ## read data
 df_in <- file.path("data", "Timeseries_InputData.csv") %>% 
-  readr::read_csv(col_types = "Dddddddddcdcdc")
+  readr::read_csv(col_types = "Ddddddddddcdcdc")
 
 ## date to start plotting
-date_start <- ymd("2003-01-01")
-date_end <- ymd("2016-01-01")
+date_start <- ymd("2003-10-01")
+date_end <- ymd("2021-09-30")
 
 df_plot <- subset(df_in, date_ghcn >= date_start & date_ghcn <= date_end)
 
@@ -37,6 +37,7 @@ df_plot %>%
   geom_hline(data = df_hline, aes(yintercept = intercept), color = col.gray) +
   facet_wrap(~name_factor, ncol = 1, scales = "free_y") +
   scale_x_date(name = "Date [daily data]", expand = c(0,0)) +
-  scale_y_continuous(name = NULL) +
-  ggsave(file.path("figures+tables", "Timeseries_InputData.png"),
-         width = 130, height = 130, units = "mm")
+  scale_y_continuous(name = NULL)
+
+ggsave(file.path("figures+tables", "Timeseries_InputData.png"),
+       width = 130, height = 130, units = "mm")

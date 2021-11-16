@@ -21,7 +21,7 @@ df_all <-
   dplyr::left_join(df_gw, by = "date_ghcn")
 
 ## met data goes back to 1904... start data before earliest streamflow measurement
-yrs_buffer <- 5
+yrs_buffer <- 10
 date_min <- min(df_stream$date_ghcn)
 
 ## trim
