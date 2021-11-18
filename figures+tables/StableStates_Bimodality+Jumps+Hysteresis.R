@@ -280,12 +280,44 @@ ggsave(file.path("figures+tables", "StableStates_Jumps-Ts-Yr.png"),
 df_met.Q_mo <-
   df_Q_mo %>% 
   dplyr::select(Year, Month, prc_noflow) %>% 
-  left_join(df_met_mo, by = c("Year", "Month"))
+  left_join(df_met_mo, by = c("Year", "Month")) %>% 
+  mutate(WaterYear_dec = decimal_date(date_mid + days(92)),
+         Cycle1 = WaterYear_dec < 2009)
 
-ggplot(subset(df_met.Q_mo, Year < 2010), aes(x = SPEI_12mo, y = prc_noflow, color = date_mid, group = 1)) +
-  geom_point() +
-  geom_path()
+# try smoothing no-flow days
+for (m in 1:24){
+  df_met.Q_mo$prc_noflow_smooth <- stats::filter(df_met.Q_mo$prc_noflow, filter = rep(1/m, m), sides = 1)
+  colnames(df_met.Q_mo)[colnames(df_met.Q_mo) == "prc_noflow_smooth"] <- paste0("prc_noflow_", m, "mo")
+}
 
-ggplot(subset(df_met.Q_mo, Year > 2010), aes(x = SPEI_12mo, y = prc_noflow, color = date_mid, group = 1)) +
+spei_limits <- c(min(df_met.Q_mo$SPEI_1mo, na.rm = T), max(df_met.Q_mo$SPEI_1mo, na.rm = T))
+spei_breaks <- seq(-2, 2, 1)
+
+p_hyst_cycle1 <- 
+  ggplot(subset(df_met.Q_mo, Cycle1), aes(x = SPEI_12mo, y = prc_noflow_12mo, color = WaterYear_dec, group = 1)) +
+  geom_vline(xintercept = 0, color = col.gray) +
   geom_point() +
-  geom_path()
+  geom_path() +
+  scale_x_continuous(name = "SPEI [12 month]", limits = spei_limits, breaks = spei_breaks) +
+  scale_y_continuous(name = "No-Flow Days [% of month, smoothed]", labels = scales::percent) +
+  scale_color_viridis_c(name = "Water Year", breaks = seq(2000, 2009, 4)) +
+  labs(title = "(a) Wet-Dry-Wet Cycle 1", subtitle = "1998-2008 water years") +
+  theme(legend.position = "bottom")
+
+p_hyst_cycle2 <-
+  ggplot(subset(df_met.Q_mo, !Cycle1), aes(x = SPEI_12mo, y = prc_noflow_12mo, color = WaterYear_dec, group = 1)) +
+  geom_vline(xintercept = 0, color = col.gray) +
+  geom_point() +
+  geom_path() +
+  scale_x_continuous(name = "SPEI [12 month]", limits = spei_limits, breaks = spei_breaks) +
+  scale_y_continuous(name = "No-Flow Days [% of month, smoothed]", labels = scales::percent) +
+  scale_color_viridis_c(name = "Water Year", breaks = seq(2010, 2020, 5)) +
+  labs(title = "(b) Wet-Dry-Wet Cycle 2", subtitle = "2009-2021 water years") +
+  theme(legend.position = "bottom")
+
+p_hyst_combo <- 
+  (p_hyst_cycle1 + p_hyst_cycle2) +
+  plot_layout(ncol = 2)
+
+ggsave(file.path("figures+tables", "StableStates_Hyst-12mo.png"),
+       p_hyst_combo, width = 190, height = 120, units = "mm")
