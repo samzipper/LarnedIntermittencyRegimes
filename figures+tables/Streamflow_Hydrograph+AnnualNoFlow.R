@@ -66,6 +66,9 @@ p_ts <-
 ggsave(file.path("figures+tables", "Streamflow_Hydrograph+AnnualNoFlow_Timeseries.png"),
        p_ts, width = 190, height = 140, units = "mm")
 
+ggsave(file.path("figures+tables", "Streamflow_Hydrograph_Timeseries.png"),
+       p_hydrographs, width = 190, height = 70, units = "mm")
+
 ## monthly no-flow days, not used: 
 p_dryprc_mo <-
   ggplot(df_mo, aes(x = date_mid, y = prc_noflow)) +

@@ -157,7 +157,7 @@ p_hist_mo.yr <-
   plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
 
 ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Mo+Yr.png"),
-       p_hist_mo.yr, width = 190, height = 190, units = "mm")
+       p_hist_mo.yr, width = 95, height = 190, units = "mm")
 
 # stats on monthly skew
 sum(df_Q_mo$prc_noflow <= 0.1) + sum(df_Q_mo$prc_noflow >= 0.9)
@@ -172,7 +172,7 @@ p_Q_ts_mo <-
   geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
                                             fill = regime_category), alpha = 0.25) +
   geom_line(data = df_Q_mo, aes(x = date_mid, y = prc_noflow)) +
-  scale_y_continuous(name = "No-Flow Days [% of Month]", labels = scales::percent) +
+  scale_y_continuous(name = "No-Flow Days\n[% of Month]", labels = scales::percent) +
   scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
@@ -181,7 +181,7 @@ p_met_ts_mo <-
   geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
                                             fill = regime_category), alpha = 0.25) +
   geom_col(data = df_met_mo, aes(x = date_mid, y = prcp_mm), fill = "black", color = "black") +
-  scale_y_continuous(name = "Monthly Precipitation [mm]", expand = expansion(mult = c(0,0.02))) +
+  scale_y_continuous(name = "Monthly Precipitation\n[mm]", expand = expansion(mult = c(0,0.02))) +
   scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
@@ -221,7 +221,7 @@ p_wuse_ts_mo.yr <-
                                             fill = regime_category), alpha = 0.25) +
   geom_line(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
   geom_point(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
-  scale_y_continuous(name = "Annual Water Use [million m\u00b3]") +
+  scale_y_continuous(name = "Annual Water Use\n[million m\u00b3]") +
   scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
@@ -229,10 +229,10 @@ p_ts_mo.yr <-
   (p_Q_ts_mo + p_met_ts_mo + p_wuse_ts_mo.yr) +
   plot_layout(ncol = 1, guides = "collect") +
   plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")") &
-  theme(legend.position = "bottom")
+  theme(legend.position = "right")
 
 ggsave(file.path("figures+tables", "StableStates_Jumps-Ts-Mo+Yr.png"),
-       p_ts_mo.yr, width = 190, height = 190, units = "mm")
+       p_ts_mo.yr, width = 190, height = 120, units = "mm")
 
 ## yearly plots
 df_regimes_startend$WaterYear_start[1] <- -Inf
@@ -301,7 +301,7 @@ p_hyst_cycle1 <-
   scale_x_continuous(name = "SPEI [12 month]", limits = spei_limits, breaks = spei_breaks) +
   scale_y_continuous(name = "No-Flow Days [% of month, smoothed]", labels = scales::percent) +
   scale_color_viridis_c(name = "Water Year", breaks = seq(2000, 2009, 4)) +
-  labs(title = "(a) Wet-Dry-Wet Cycle 1", subtitle = "1998-2008 water years") +
+  labs(title = "(a) 1998-2008 water years") +
   theme(legend.position = "bottom")
 
 p_hyst_cycle2 <-
@@ -312,12 +312,14 @@ p_hyst_cycle2 <-
   scale_x_continuous(name = "SPEI [12 month]", limits = spei_limits, breaks = spei_breaks) +
   scale_y_continuous(name = "No-Flow Days [% of month, smoothed]", labels = scales::percent) +
   scale_color_viridis_c(name = "Water Year", breaks = seq(2010, 2020, 5)) +
-  labs(title = "(b) Wet-Dry-Wet Cycle 2", subtitle = "2009-2021 water years") +
+  labs(title = "(b) 2009-2021 water years") +
   theme(legend.position = "bottom")
 
 p_hyst_combo <- 
   (p_hyst_cycle1 + p_hyst_cycle2) +
   plot_layout(ncol = 2)
 
-ggsave(file.path("figures+tables", "StableStates_Hyst-12mo.png"),
-       p_hyst_combo, width = 190, height = 120, units = "mm")
+ggsave(file.path("figures+tables", "StableStates_Hyst-12mo_NoArrows.png"),
+       p_hyst_combo, width = 190, height = 95, units = "mm")
+ggsave(file.path("figures+tables", "StableStates_Hyst-12mo.pdf"),
+       p_hyst_combo, width = 190, height = 95, units = "mm", device = cairo_pdf)

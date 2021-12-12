@@ -196,4 +196,10 @@ df_full %>%
 # break down by source
 table(df_full$station_prcp)
 table(df_full$station_tmax)
-table(df_full$station_prcp)
+table(df_full$station_tmin)
+
+# stats for 1999-2021 water years
+df_focus <- subset(df_full, date >= ymd("1999-10-01"))
+table(df_focus$station_prcp)  # (2971+4434)/8036
+table(df_focus$station_tmax)  # (3059+4300)/8036
+table(df_focus$station_tmin)  # (3059+4300)/8036
