@@ -160,8 +160,16 @@ ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Mo+Yr.png"),
        p_hist_mo.yr, width = 95, height = 190, units = "mm")
 
 # stats on monthly skew
+sum(df_Q_mo$prc_noflow <= 0.1)
+sum(df_Q_mo$prc_noflow >= 0.9)
 sum(df_Q_mo$prc_noflow <= 0.1) + sum(df_Q_mo$prc_noflow >= 0.9)
 length(df_Q_mo$prc_noflow)
+
+sum(df_met_mo$prcp_mm <= 50)
+sum(df_met_mo$prcp_mm <= 100)
+
+mean(df_wuse_yr$WaterUse_m3)
+median(df_wuse_yr$WaterUse_m3)
 
 #### Timeseries jumps analysis
 
