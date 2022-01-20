@@ -1,5 +1,6 @@
 ## RegimeShifts_rstars.R
-# This script contains a modified version of the rstars package.
+# This script contains a modified version of the rstars package, 
+# which is available here: https://github.com/LStirnimann/rstars
 
 #setwd("C:/Users/samzipper/WorkGits/LarnedIntermittencyRegimes")
 
