@@ -39,7 +39,7 @@ p_levels <-
     #annotate("text", x = ymd("2004-01-01"), y = 591, label = "High Plains\nAquifer", color = col.gray) +
   scale_x_date(name = "Date", expand = c(0,0), date_labels = "%Y") +
   scale_y_continuous(name = "Water Level [masl]") +
-  scale_color_manual(name = NULL, values = c(col.cat.blu, col.cat.org, col.gray), guide = "none") +
+  scale_color_manual(name = NULL, values = c("black", col.cat.org, col.gray), guide = "none") +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu), guide = "none")
 
 ggsave(file.path("figures+tables", "StreamStage+WaterLevels_NoLabels.png"),

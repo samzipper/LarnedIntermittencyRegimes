@@ -5,6 +5,30 @@ source(file.path("code", "paths+packages.R"))
 
 ## load data
 df_dry_periods <- readr::read_csv(file.path("data", "Streamflow_DryPeriods.csv"))
+df_day <- readr::read_csv(file.path("data", "Streamflow+Stage_Daily_Clean.csv"))
+
+## prep/plot hydrograph
+# set minimum for plotting
+min_q <- 0.001
+df_day$discharge_forlog <- df_day$discharge_cms
+df_day$discharge_forlog[df_day$discharge_forlog < min_q] <- min_q
+
+p_hydrographs <-
+  ggplot() +
+  geom_rect(data = df_dry_periods, aes(xmin = first_noflow_date, xmax = last_noflow_date,
+                                       ymin = min_q, ymax = Inf), 
+            color = "transparent", fill = col.cat.yel, alpha = 0.3) +
+  geom_hline(yintercept = min_q, color = col.gray) +
+  scale_x_date(name = "Date", expand = c(0,0), date_labels = "%Y") +
+  geom_line(data = df_day, aes(x = Date, y = discharge_forlog), color = col.cat.blu) +
+  scale_y_log10(name = "Mean Daily Discharge [m\u00b3/s]", 
+                breaks = scales::trans_breaks("log10", function(x) 10^x),
+                labels = scales::trans_format("log10", scales::math_format(10^.x)),
+                expand = c(0, 0)) +
+  #annotation_logticks() +
+  NULL
+
+## prep/plot dry periods
 
 # summarize by length
 df_dry_periods$noflow_length <- 
@@ -47,7 +71,7 @@ p_timing <-
   ggplot(df_season_summary, aes(x = factor(Season), y = n_events, fill = mean_length)) + 
   geom_col() +
   scale_x_discrete(name = "Season [start of event]",
-                   labels = c("Winter\n(JFM)", "Spring\n(AMJ)", "Summer\n(JAS)", "Fall\n(OND)")) +
+                   labels = c("Winter", "Spring", "Summer", "Fall")) +
   scale_y_continuous(name = "Number of Events", 
                      breaks = seq(0, 12, 4),
                      expand = expansion(mult = c(0, 0.03))) +
@@ -58,9 +82,9 @@ p_timing <-
         legend.title = element_text(vjust = 1, hjust = 0.5))
 
 p_combo <-
-  (p_length + p_timing) +
-  plot_layout(ncol = 2) +
+  (p_hydrographs / (p_length + p_timing)) +
+  plot_layout(nrow = 2) +
   plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
 
-ggsave(file.path("figures+tables", "Streamflow_DryPeriodSummary.png"),
-       p_combo, width = 190, height = 100, units = "mm")
+ggsave(file.path("figures+tables", "Streamflow_Hydrograph+DryPeriodSummary.png"),
+       p_combo, width = 190, height = 140, units = "mm")

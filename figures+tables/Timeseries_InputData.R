@@ -49,11 +49,12 @@ df_plot %>%
   ggplot() +
   geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
                                             fill = regime_category), alpha = 0.25) +
-  geom_line(aes(x = date_ghcn, y = value)) +
   geom_hline(data = df_hline, aes(yintercept = intercept), color = col.gray) +
+  geom_line(aes(x = date_ghcn, y = value, color = name_factor)) +
   facet_wrap(~name_factor, ncol = 1, scales = "free_y") +
   scale_x_date(name = "Date [daily data]", expand = c(0,0)) +
   scale_y_continuous(name = NULL) +
+  scale_color_manual(values = c("black", "black", "black", col.cat.org), guide = "none") +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu)) +
   theme(legend.position = "bottom")
 

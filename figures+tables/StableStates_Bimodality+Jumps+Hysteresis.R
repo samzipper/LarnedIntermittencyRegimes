@@ -110,7 +110,7 @@ p_hist_yr <-
   plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
 
 ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Yr.png"),
-       p_hist_yr, width = 190, height = 190, units = "mm")
+       p_hist_yr, width = 95, height = 160, units = "mm")
 
 # stats on yearly skew
 sum(df_Q_yr$prc_noflow <= 0.1) + sum(df_Q_yr$prc_noflow >= 0.9)
@@ -157,7 +157,7 @@ p_hist_mo.yr <-
   plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
 
 ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Mo+Yr.png"),
-       p_hist_mo.yr, width = 95, height = 190, units = "mm")
+       p_hist_mo.yr, width = 95, height = 130, units = "mm")
 
 # stats on monthly skew
 sum(df_Q_mo$prc_noflow <= 0.1) + sum(df_Q_mo$prc_noflow >= 0.9)
