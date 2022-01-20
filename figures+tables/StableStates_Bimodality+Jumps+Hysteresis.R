@@ -97,9 +97,9 @@ p_wuse_yr <-
   geom_histogram(fill = col.cat.blu, 
                  color = "white", 
                  breaks = wuse_breaks) +
-  scale_y_continuous(name = "Number of Water Years", expand = expansion(mult = c(0, 0.02)),
+  scale_y_continuous(name = "Number of Years", expand = expansion(mult = c(0, 0.02)),
                      breaks = seq(0, 10, 1)) +
-  scale_x_continuous(name = "Water Use within 4 km [million m\u00b3]",
+  scale_x_continuous(name = "Annual Pumping [million m\u00b3]",
                      limits = c(min(wuse_breaks), max(wuse_breaks)),
                      expand = expansion(mult = 0)) +
   theme(plot.margin = margin(t = 1, r = 10, b = 1, l = 1, unit = "pt"))
@@ -229,7 +229,7 @@ p_wuse_ts_mo.yr <-
                                             fill = regime_category), alpha = 0.25) +
   geom_line(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
   geom_point(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
-  scale_y_continuous(name = "Annual Water Use\n[million m\u00b3]") +
+  scale_y_continuous(name = "Annual Pumping\n[million m\u00b3]") +
   scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
@@ -271,7 +271,7 @@ p_wuse_ts_yr <-
                                             fill = regime_category), alpha = 0.25) +
   geom_line(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = "black") +
   geom_point(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = "black") +
-  scale_y_continuous(name = "Water Use within 4 km [million m\u00b3]") +
+  scale_y_continuous(name = "Pumping within 4 km [million m\u00b3]") +
   scale_x_continuous(name = "Year", limits = c(min(df_Q_yr$WaterYear), max(df_Q_yr$WaterYear))) +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
 
