@@ -56,6 +56,7 @@ p_stress <-
   dplyr::select(Date, well_norm, recharge_norm, exchange) %>% 
   pivot_longer(-Date) %>% 
   ggplot(aes(x = Date, y = value)) +
+  geom_hline(yintercept = 0, color = col.gray) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
   geom_line() +
   facet_wrap(~name, ncol = 1, scales = "free",
