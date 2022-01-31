@@ -38,6 +38,12 @@ df_out_daily$simulated_masl <- df_out_daily$simulated + min(df_in$stage_masl, na
 df_out_daily$well_norm <- df_out_daily$well - max(df_out_daily$well)
 df_out_daily$recharge_norm <- df_out_daily$recharge - min(df_out_daily$recharge)
 
+## fit stats
+fit_kge <- hydroGOF::KGE(df_out_daily$simulated_masl, df_out_daily$level_masl)
+fit_rmse <- hydroGOF::rmse(df_out_daily$simulated_masl, df_out_daily$level_masl)
+hydroGOF::nrmse(df_out_daily$simulated_masl, df_out_daily$level_masl, norm = "maxmin")
+
+## make plots
 p_fit <-
   ggplot(df_out_daily, aes(x = Date)) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
@@ -47,7 +53,7 @@ p_fit <-
   scale_y_continuous(name = "Alluvial Aquifer Head [masl]") +
   theme(axis.title.x = element_blank(),
         plot.title = element_text(face = "plain")) +
-  labs(title = "(a) Model fit")
+  labs(title = paste0("(a) Model fit (KGE = ", round(fit_kge, 2), ", RMSE = ", round(fit_rmse, 2), ")"))
 
 ## contribution of each stress to overall variability
 p_stress <-
@@ -60,7 +66,7 @@ p_stress <-
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
   geom_line() +
   facet_wrap(~name, ncol = 1, scales = "free",
-             labeller = as_labeller(c("recharge_norm" = "(c) Recharge", 
+             labeller = as_labeller(c("recharge_norm" = "(c) Diffuse Recharge", 
                                       "exchange" = "(b) Stream-Aquifer Exchange",
                                       "well_norm" = "(d) Pumping"))) +
   scale_y_continuous(name = "Contribution to Head Variability [m]") +
@@ -77,7 +83,3 @@ ggsave(file.path("figures+tables", "Timeseries_OutputDaily_NoLabels.png"),
 
 ggsave(file.path("figures+tables", "Timeseries_OutputDaily_NoLabels.pdf"),
        p_combo, width = 95, height = 160, units = "mm", device = cairo_pdf)
-
-hydroGOF::KGE(df_out_daily$simulated_masl, df_out_daily$level_masl)
-hydroGOF::rmse(df_out_daily$simulated_masl, df_out_daily$level_masl)
-hydroGOF::nrmse(df_out_daily$simulated_masl, df_out_daily$level_masl, norm = "maxmin")
