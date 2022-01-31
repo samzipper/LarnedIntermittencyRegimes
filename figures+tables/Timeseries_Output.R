@@ -15,6 +15,17 @@ df_out_response <-
   file.path("data", "Timeseries_FinalModel_ResponseFuncs.csv") %>% 
   readr::read_csv()
 
+# regime shifts
+df_regimes <- read_csv(file.path("data", "RegimeShifts_rstars.csv"))
+df_regime_dates <- subset(df_regimes, ts_regime_shift != 0)
+df_regimes_startend <- tibble(
+  date_start = c(min(df_regimes$date_mid), df_regime_dates$date_mid),
+  date_end = c(df_regime_dates$date_mid, max(df_regimes$date_mid)),
+  regime_category = c("Wet", "Dry", "Wet", "Dry", "Wet")
+) %>% 
+  mutate(WaterYear_start = decimal_date(date_start + days(92)),
+         WaterYear_end = decimal_date(date_end + days(92)))
+
 ## plot fit
 df_out_daily$simulated <- df_out_daily$obs - df_out_daily$resid
 colnames(df_out_daily)[1] <- "Date"
@@ -29,8 +40,9 @@ df_out_daily$recharge_norm <- df_out_daily$recharge - min(df_out_daily$recharge)
 
 p_fit <-
   ggplot(df_out_daily, aes(x = Date)) +
-  geom_line(aes(y = level_masl), color = col.cat.org) +
-  geom_line(aes(y = simulated_masl)) +
+  geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
+  geom_point(aes(y = level_masl), color = col.cat.org) +
+  geom_line(aes(y = simulated_masl), color = "black") +
   scale_x_date(expand = c(0,0)) +
   scale_y_continuous(name = "Alluvial Aquifer Head [masl]") +
   theme(axis.title.x = element_blank(),
@@ -44,6 +56,7 @@ p_stress <-
   dplyr::select(Date, well_norm, recharge_norm, exchange) %>% 
   pivot_longer(-Date) %>% 
   ggplot(aes(x = Date, y = value)) +
+  geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
   geom_line() +
   facet_wrap(~name, ncol = 1, scales = "free",
              labeller = as_labeller(c("recharge_norm" = "(c) Recharge", 

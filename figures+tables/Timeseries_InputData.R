@@ -29,7 +29,7 @@ df_regimes_startend$date_end[length(df_regimes_startend$date_end)] <- date_end
 
 ## plot - facet
 df_hline <- tibble::tibble(name = c("defc_mm", "WaterUse_1e4m3d", "stage_masl", "LWPH4b"),
-                           intercept = c(0, 0, 593.23, 593.23)) %>% 
+                           intercept = c(0, 0, 593.25, 593.25)) %>% 
   dplyr::mutate(name_factor = factor(name, levels = c("defc_mm", "WaterUse_1e4m3d", "stage_masl", "LWPH4b"), 
                                      labels = c("Climatic Water Balance (Precip - ETo) [mm]", 
                                                 "Pumping [x10\u2074 m\u00b3/d]", 
@@ -47,14 +47,15 @@ df_plot %>%
                                                 "River Stage [masl]", 
                                                 "Alluvial Aquifer Head [masl]"))) %>% 
   ggplot() +
-  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
-                                            fill = regime_category), alpha = 0.25) +
+  geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
+  #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+  #                                          fill = regime_category), alpha = 0.25) +
   geom_hline(data = df_hline, aes(yintercept = intercept), color = col.gray) +
   geom_line(aes(x = date_ghcn, y = value, color = name_factor)) +
   facet_wrap(~name_factor, ncol = 1, scales = "free_y") +
   scale_x_date(name = "Date [daily data]", expand = c(0,0)) +
   scale_y_continuous(name = NULL) +
-  scale_color_manual(values = c("black", "black", "black", col.cat.org), guide = "none") +
+  scale_color_manual(values = c("black", "black", col.cat.blu, col.cat.org), guide = "none") +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu)) +
   theme(legend.position = "bottom")
 

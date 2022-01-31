@@ -9,6 +9,7 @@ library(patchwork)
 library(dataRetrieval)
 library(lubridate)
 library(Evapotranspiration)
+library(colorBlindness)
 options(dplyr.summarise.inform=F)   # suppress summarize info
 ncores <- (parallel::detectCores() - 1)  # number of cores to use for any parallel stuff
 

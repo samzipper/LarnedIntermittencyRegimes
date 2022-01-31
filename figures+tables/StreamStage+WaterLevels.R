@@ -28,19 +28,27 @@ df_regimes_startend <- tibble(
   mutate(WaterYear_start = decimal_date(date_start + days(92)),
          WaterYear_end = decimal_date(date_end + days(92)))
 
+# streambed elevation
+stream_elev <- 593.25
+
 ## plot
 p_levels <-
   ggplot() +
-  geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
-                                            fill = regime_category), alpha = 0.25) +
+  #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = 596.8, ymax = Inf, 
+  #                                          fill = regime_category)) +
+  geom_hline(yintercept = stream_elev, color = col.gray) +
+  geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
   geom_line(data = df_Q.GW_day, aes(x = date_ghcn, y = level_masl, color = site_factor)) +
     #annotate("text", x = ymd("2000-01-01"), y = 595.5, label = "River", color = col.cat.blu) +
     #annotate("text", x = ymd("2005-01-01"), y = 595, label = "Alluvial\nAquifer", color = col.cat.org) +
     #annotate("text", x = ymd("2004-01-01"), y = 591, label = "High Plains\nAquifer", color = col.gray) +
   scale_x_date(name = "Date", expand = c(0,0), date_labels = "%Y") +
   scale_y_continuous(name = "Water Level [masl]") +
-  scale_color_manual(name = NULL, values = c("black", col.cat.org, col.gray), guide = "none") +
+  scale_color_manual(name = NULL, values = c(col.cat.blu, col.cat.org, col.cat.grn), guide = "none") +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu), guide = "none")
+
+
+cvdPlot(p_levels)
 
 ggsave(file.path("figures+tables", "StreamStage+WaterLevels_NoLabels.png"),
        p_levels, width = 190, height = 80, units = "mm")
