@@ -64,13 +64,15 @@ p_stress <-
   ggplot(aes(x = Date, y = value)) +
   geom_hline(yintercept = 0, color = col.gray) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
-  geom_line() +
+  geom_line(aes(color = name)) +
   facet_wrap(~name, ncol = 1, scales = "free",
              labeller = as_labeller(c("recharge_norm" = "(c) Diffuse Recharge", 
                                       "exchange" = "(b) Stream-Aquifer Exchange",
                                       "well_norm" = "(d) Pumping"))) +
   scale_y_continuous(name = "Contribution to Head Variability [m]") +
   scale_x_date(expand = c(0,0)) +
+  scale_color_manual(values = c("recharge_norm" = "black", "exchange" = col.cat.blu, "well_norm" = "black"),
+                     guide = "none") +
   theme(axis.title.x = element_blank(),
         strip.text = element_text(hjust = 0))
 

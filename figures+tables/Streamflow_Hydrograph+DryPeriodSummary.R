@@ -17,7 +17,7 @@ p_hydrographs <-
   ggplot() +
   geom_rect(data = df_dry_periods, aes(xmin = first_noflow_date, xmax = last_noflow_date,
                                        ymin = min_q, ymax = Inf), 
-            color = "transparent", fill = col.cat.yel, alpha = 0.3) +
+            color = "transparent", fill = col.cat.yel, alpha = 0.4) +
   geom_hline(yintercept = min_q, color = col.gray) +
   scale_x_date(name = "Date", expand = c(0,0), date_labels = "%Y") +
   geom_line(data = df_day, aes(x = Date, y = discharge_forlog), color = col.cat.blu) +
