@@ -55,7 +55,7 @@ df_plot %>%
   facet_wrap(~name_factor, ncol = 1, scales = "free_y") +
   scale_x_date(name = "Date [daily data]", expand = c(0,0)) +
   scale_y_continuous(name = NULL) +
-  scale_color_manual(values = c("black", "black", col.cat.blu, col.cat.org), guide = "none") +
+  scale_color_manual(values = c(col.cat.red, col.cat.grn, col.cat.blu, col.cat.org), guide = "none") +
   scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu)) +
   theme(legend.position = "bottom")
 

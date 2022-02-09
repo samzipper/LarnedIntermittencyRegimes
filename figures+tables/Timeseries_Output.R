@@ -47,7 +47,7 @@ hydroGOF::nrmse(df_out_daily$simulated_masl, df_out_daily$level_masl, norm = "ma
 p_fit <-
   ggplot(df_out_daily, aes(x = Date)) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
-  geom_point(aes(y = level_masl), color = col.cat.org) +
+  geom_line(aes(y = level_masl), color = col.cat.org, size = 1) +
   geom_line(aes(y = simulated_masl), color = "black") +
   scale_x_date(expand = c(0,0)) +
   scale_y_continuous(name = "Alluvial Aquifer Head [masl]") +
@@ -71,7 +71,7 @@ p_stress <-
                                       "well_norm" = "(d) Pumping"))) +
   scale_y_continuous(name = "Contribution to Head Variability [m]") +
   scale_x_date(expand = c(0,0)) +
-  scale_color_manual(values = c("recharge_norm" = "black", "exchange" = col.cat.blu, "well_norm" = "black"),
+  scale_color_manual(values = c("recharge_norm" = col.cat.red, "exchange" = col.cat.blu, "well_norm" = col.cat.grn),
                      guide = "none") +
   theme(axis.title.x = element_blank(),
         strip.text = element_text(hjust = 0))
