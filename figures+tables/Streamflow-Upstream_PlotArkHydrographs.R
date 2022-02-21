@@ -4,7 +4,7 @@
 source(file.path("code", "paths+packages.R"))
 
 # define gagenames to plot, in order you want plotted
-#  based on gagenames in Streamflow-Upstream_01_Download.R
+#  based on gagenames in Streamflow-Upstream_02_Clean.R
 gages_plot <- c("Coolidge", "Kendall",
                 "Deerfield", "Garden City", "Dodge City", "Larned")
 

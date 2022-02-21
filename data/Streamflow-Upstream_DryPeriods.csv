@@ -1,0 +1,748 @@
+gagename,first_noflow_date,last_noflow_date,total_noflow_days
+Granada (CO),NA,NA,NA
+Coolidge,NA,NA,NA
+Syracuse,2013-07-15,2013-07-19,5
+Syracuse,2013-07-21,2013-08-03,14
+Kendall,NA,2013-06-18,NA
+Kendall,2013-06-20,2013-08-03,45
+Kendall,2013-08-05,2013-08-05,1
+Kendall,2013-08-09,NA,NA
+Deerfield,NA,2002-06-21,NA
+Deerfield,2002-06-28,2002-07-07,10
+Deerfield,2002-07-24,2002-11-08,108
+Deerfield,2003-01-16,2003-01-18,3
+Deerfield,2003-01-22,2003-01-24,3
+Deerfield,2003-01-26,2003-01-26,1
+Deerfield,2003-01-31,2003-02-12,13
+Deerfield,2003-02-14,2003-02-28,15
+Deerfield,2003-03-11,2003-04-26,47
+Deerfield,2003-05-14,2003-05-15,2
+Deerfield,2003-06-10,2004-04-04,300
+Deerfield,2004-04-09,2004-04-09,1
+Deerfield,2004-04-15,2004-04-23,9
+Deerfield,2004-04-26,2004-04-30,5
+Deerfield,2004-05-24,2004-06-15,23
+Deerfield,2004-06-27,2004-06-29,3
+Deerfield,2004-07-11,2004-07-14,4
+Deerfield,2004-08-07,2004-10-19,74
+Deerfield,2005-01-07,2005-01-08,2
+Deerfield,2005-01-29,2005-02-09,12
+Deerfield,2005-02-12,2005-04-12,60
+Deerfield,2005-06-21,2005-07-04,14
+Deerfield,2005-07-30,2005-11-21,115
+Deerfield,2005-12-07,2005-12-22,16
+Deerfield,2006-01-24,2006-02-24,32
+Deerfield,2006-04-17,2006-12-16,244
+Deerfield,2006-12-24,2006-12-27,4
+Deerfield,2007-01-01,2007-01-02,2
+Deerfield,2007-08-19,2007-08-25,7
+Deerfield,2008-03-06,2008-04-23,49
+Deerfield,2008-05-30,2008-07-13,45
+Deerfield,2009-02-19,2009-03-30,40
+Deerfield,2009-05-01,2009-05-01,1
+Deerfield,2009-06-29,2009-07-07,9
+Deerfield,2009-08-07,2009-08-13,7
+Deerfield,2009-09-17,2009-10-01,15
+Deerfield,2010-04-23,2010-04-23,1
+Deerfield,2010-04-30,2010-06-21,53
+Deerfield,2010-07-28,2010-07-30,3
+Deerfield,2010-09-01,2012-01-20,507
+Deerfield,2012-04-20,2013-06-03,410
+Deerfield,2013-06-05,2013-07-26,52
+Deerfield,2013-07-28,2013-07-30,3
+Deerfield,2013-08-01,2013-08-03,3
+Deerfield,2013-08-05,2013-08-11,7
+Deerfield,2013-08-13,2013-08-13,1
+Deerfield,2013-08-15,2013-09-10,27
+Deerfield,2013-09-13,2014-06-07,268
+Deerfield,2014-06-10,2014-06-21,12
+Deerfield,2014-06-23,2014-06-23,1
+Deerfield,2014-06-26,2014-06-27,2
+Deerfield,2014-06-29,2014-07-29,31
+Deerfield,2014-07-31,2014-08-21,22
+Deerfield,2014-08-23,2014-08-26,4
+Deerfield,2014-08-28,2014-09-04,8
+Deerfield,2014-09-06,2014-10-09,34
+Deerfield,2014-10-11,2015-05-04,206
+Deerfield,2015-05-07,2015-05-08,2
+Deerfield,2015-05-10,2015-05-16,7
+Deerfield,2016-09-13,2016-09-21,9
+Deerfield,2016-12-20,2016-12-23,4
+Deerfield,2017-01-08,2017-01-09,2
+Deerfield,2017-02-13,2019-04-16,793
+Deerfield,2019-12-30,2020-01-02,4
+Deerfield,2020-06-11,2021-01-13,217
+Deerfield,2021-01-15,2021-01-16,2
+Deerfield,2021-01-27,2021-01-30,4
+Deerfield,2021-02-08,2021-02-23,16
+Deerfield,2021-04-26,2021-05-16,21
+Deerfield,2021-07-18,NA,NA
+Garden City,1988-10-08,1988-11-09,33
+Garden City,1989-02-06,1989-02-07,2
+Garden City,1989-03-16,1989-05-17,63
+Garden City,1989-07-08,1989-07-11,4
+Garden City,1989-07-13,1989-07-14,2
+Garden City,1989-07-24,1989-08-24,32
+Garden City,1989-08-26,1989-09-11,17
+Garden City,1989-09-13,1989-09-13,1
+Garden City,1989-09-30,1989-11-27,59
+Garden City,1989-12-04,1989-12-07,4
+Garden City,1989-12-12,1989-12-31,20
+Garden City,1990-04-22,1990-04-22,1
+Garden City,1990-04-29,1990-05-02,4
+Garden City,1990-05-14,1990-05-25,12
+Garden City,1990-06-07,1990-07-24,48
+Garden City,1990-07-29,1991-01-28,184
+Garden City,1991-02-18,1993-02-04,718
+Garden City,1993-02-12,1993-02-22,11
+Garden City,1993-03-18,1993-03-20,3
+Garden City,1993-05-14,1993-05-21,8
+Garden City,1993-05-24,1993-06-17,25
+Garden City,1993-06-22,1993-06-26,5
+Garden City,1993-06-28,1993-07-13,16
+Garden City,1993-07-15,1993-07-31,17
+Garden City,1993-08-03,1993-08-10,8
+Garden City,1993-08-12,1993-08-26,15
+Garden City,1993-08-28,1993-09-16,20
+Garden City,1993-09-18,1993-09-23,6
+Garden City,1993-09-26,1993-10-15,20
+Garden City,1993-10-19,1993-10-26,8
+Garden City,1993-11-26,1993-11-29,4
+Garden City,1994-01-19,1994-01-20,2
+Garden City,1994-02-03,1994-02-03,1
+Garden City,1994-03-23,1994-04-08,17
+Garden City,1994-04-10,1994-04-10,1
+Garden City,1994-04-12,1994-05-11,30
+Garden City,1994-05-13,1994-05-27,15
+Garden City,1994-05-29,1994-05-30,2
+Garden City,1994-06-01,1994-06-21,21
+Garden City,1994-06-23,1994-07-24,32
+Garden City,1994-07-26,1994-08-01,7
+Garden City,1994-08-03,1994-09-06,35
+Garden City,1994-09-08,1994-12-18,102
+Garden City,1995-01-03,1995-01-09,7
+Garden City,1995-02-11,1995-02-13,3
+Garden City,1995-02-15,1995-02-15,1
+Garden City,1995-03-24,1995-04-18,26
+Garden City,1995-04-23,1995-05-06,14
+Garden City,1995-05-08,1995-05-14,7
+Garden City,1995-05-19,1995-05-20,2
+Garden City,1996-04-05,1996-05-24,50
+Garden City,1996-07-13,1996-07-13,1
+Garden City,1997-04-07,1997-04-10,4
+Garden City,1997-05-20,1997-05-22,3
+Garden City,1997-07-04,1997-07-04,1
+Garden City,1997-07-06,1997-08-01,27
+Garden City,1998-06-27,1998-07-01,5
+Garden City,1998-07-03,1998-07-06,4
+Garden City,2000-06-15,2000-06-19,5
+Garden City,2000-06-27,2000-06-30,4
+Garden City,2000-07-13,2000-07-18,6
+Garden City,2000-08-06,2000-08-08,3
+Garden City,2000-08-25,2000-09-03,10
+Garden City,2000-09-07,2000-10-15,39
+Garden City,2000-10-19,2000-10-22,4
+Garden City,2001-05-13,2001-05-16,4
+Garden City,2001-05-18,2001-05-18,1
+Garden City,2001-07-01,2001-07-15,15
+Garden City,2001-07-22,2001-07-28,7
+Garden City,2001-08-04,2001-08-13,10
+Garden City,2001-09-11,2001-10-30,50
+Garden City,2002-02-02,2002-02-03,2
+Garden City,2002-03-28,2003-06-04,434
+Garden City,2003-06-06,2007-02-05,1341
+Garden City,2007-02-07,2007-02-07,1
+Garden City,2007-02-09,2007-02-10,2
+Garden City,2007-02-12,2007-02-15,4
+Garden City,2007-02-18,2007-03-23,34
+Garden City,2007-03-25,2007-04-12,19
+Garden City,2007-04-15,2007-04-20,6
+Garden City,2007-04-23,2007-05-28,36
+Garden City,2007-05-31,2007-06-12,13
+Garden City,2007-06-15,2007-06-18,4
+Garden City,2007-06-20,2007-07-03,14
+Garden City,2007-07-05,2007-07-11,7
+Garden City,2007-07-14,2007-08-19,37
+Garden City,2007-08-21,2007-08-22,2
+Garden City,2007-08-25,2007-08-27,3
+Garden City,2007-08-29,2007-09-16,19
+Garden City,2007-09-19,2008-06-17,273
+Garden City,2008-06-21,2008-07-17,27
+Garden City,2008-07-19,2008-08-04,17
+Garden City,2008-08-07,2008-08-08,2
+Garden City,2008-08-10,2008-08-13,4
+Garden City,2008-08-16,2008-08-16,1
+Garden City,2008-08-19,2008-09-04,17
+Garden City,2008-09-06,2008-10-11,36
+Garden City,2008-10-15,2008-10-20,6
+Garden City,2008-10-23,2009-03-27,156
+Garden City,2009-03-29,2009-04-10,13
+Garden City,2009-04-13,2009-04-15,3
+Garden City,2009-04-19,2009-04-28,10
+Garden City,2009-04-30,2009-05-03,4
+Garden City,2009-05-06,2009-06-11,37
+Garden City,2009-06-13,2009-06-13,1
+Garden City,2009-06-15,2009-06-19,5
+Garden City,2009-06-21,2009-07-25,35
+Garden City,2009-07-28,2009-07-28,1
+Garden City,2009-07-31,2009-08-05,6
+Garden City,2009-08-07,2009-08-17,11
+Garden City,2009-08-20,2009-09-02,14
+Garden City,2009-09-04,2009-10-06,33
+Garden City,2009-10-08,2009-10-12,5
+Garden City,2009-10-14,2009-10-20,7
+Garden City,2009-10-23,2009-10-24,2
+Garden City,2009-10-26,2009-10-27,2
+Garden City,2009-10-30,2009-11-14,16
+Garden City,2009-11-16,2010-02-03,80
+Garden City,2010-02-05,2010-02-11,7
+Garden City,2010-02-16,2010-02-16,1
+Garden City,2010-02-22,2010-02-23,2
+Garden City,2010-04-04,2010-04-13,10
+Garden City,2010-04-17,2010-04-21,5
+Garden City,2010-04-23,2010-05-15,23
+Garden City,2010-05-17,2010-05-18,2
+Garden City,2010-05-20,2013-06-03,1111
+Garden City,2013-06-05,2013-07-08,34
+Garden City,2013-07-10,2013-09-10,63
+Garden City,2013-09-13,2013-09-26,14
+Garden City,2013-09-29,2013-10-09,11
+Garden City,2013-10-12,2013-10-17,6
+Garden City,2013-10-19,2013-11-04,17
+Garden City,2013-11-06,2014-03-07,122
+Garden City,2014-03-09,2014-04-05,28
+Garden City,2014-04-08,2014-04-13,6
+Garden City,2014-04-15,2014-04-16,2
+Garden City,2014-04-18,2014-05-21,34
+Garden City,2014-05-24,2014-05-31,8
+Garden City,2014-06-02,2014-06-02,1
+Garden City,2014-06-10,2014-06-21,12
+Garden City,2014-06-25,2014-06-27,3
+Garden City,2014-06-29,2014-07-15,17
+Garden City,2014-07-17,2014-07-20,4
+Garden City,2014-07-23,2014-07-29,7
+Garden City,2014-07-31,2014-08-06,7
+Garden City,2014-08-10,2014-08-15,6
+Garden City,2014-08-17,2014-08-26,10
+Garden City,2014-08-28,2014-09-04,8
+Garden City,2014-09-06,2014-10-09,34
+Garden City,2014-10-11,2014-10-12,2
+Garden City,2014-10-14,2014-12-13,61
+Garden City,2014-12-15,2015-01-29,46
+Garden City,2015-02-02,2015-02-23,22
+Garden City,2015-02-25,2015-03-18,22
+Garden City,2015-03-20,2015-04-15,27
+Garden City,2015-04-19,2015-05-04,16
+Garden City,2015-05-07,2015-05-08,2
+Garden City,2015-05-10,2015-05-15,6
+Garden City,2015-05-17,2015-05-18,2
+Garden City,2015-05-20,2015-05-21,2
+Garden City,2015-05-24,2015-05-26,3
+Garden City,2015-05-30,2015-06-11,13
+Garden City,2015-06-13,2015-07-12,30
+Garden City,2015-07-16,2015-07-18,3
+Garden City,2015-07-21,2015-07-21,1
+Garden City,2015-07-23,2015-07-26,4
+Garden City,2015-07-28,2015-07-28,1
+Garden City,2015-07-30,2015-08-07,9
+Garden City,2015-08-09,2015-08-11,3
+Garden City,2015-08-13,2015-08-16,4
+Garden City,2015-08-19,2015-10-20,63
+Garden City,2015-10-23,2015-10-29,7
+Garden City,2015-10-31,2015-11-03,4
+Garden City,2015-11-05,2015-11-15,11
+Garden City,2015-11-18,2015-12-12,25
+Garden City,2015-12-15,2015-12-19,5
+Garden City,2015-12-21,2016-02-01,43
+Garden City,2016-02-03,2016-04-10,68
+Garden City,2016-04-12,2016-04-14,3
+Garden City,2016-04-21,2016-04-28,8
+Garden City,2016-04-30,2016-05-30,31
+Garden City,2016-06-01,2016-06-12,12
+Garden City,2016-06-14,2016-07-13,30
+Garden City,2016-07-17,2016-07-23,7
+Garden City,2016-07-26,2016-07-27,2
+Garden City,2016-07-29,2016-08-04,7
+Garden City,2016-08-08,2016-11-10,95
+Garden City,2016-11-13,2016-12-24,42
+Garden City,2016-12-26,2017-01-14,20
+Garden City,2017-01-18,2017-01-20,3
+Garden City,2017-01-23,2017-03-23,60
+Garden City,2017-03-25,2017-03-27,3
+Garden City,2017-03-30,2017-03-31,2
+Garden City,2017-04-02,2017-04-03,2
+Garden City,2017-04-06,2017-04-20,15
+Garden City,2017-04-22,2017-04-27,6
+Garden City,2017-05-04,2017-05-14,11
+Garden City,2017-06-05,2017-06-07,3
+Garden City,2017-06-09,2017-06-20,12
+Garden City,2017-06-23,2017-07-06,14
+Garden City,2017-07-09,2017-07-12,4
+Garden City,2017-07-15,2017-07-15,1
+Garden City,2017-07-17,2017-07-30,14
+Garden City,2017-08-01,2017-08-06,6
+Garden City,2017-08-08,2017-08-08,1
+Garden City,2017-08-31,2017-09-22,23
+Garden City,2017-09-26,2017-10-02,7
+Garden City,2017-12-25,2018-01-11,18
+Garden City,2018-04-04,2018-04-06,3
+Garden City,2018-04-08,2018-04-19,12
+Garden City,2018-04-21,2018-04-23,3
+Garden City,2018-04-26,2018-05-14,19
+Garden City,2018-05-16,2018-05-17,2
+Garden City,2018-05-20,2018-05-22,3
+Garden City,2018-05-24,2018-05-27,4
+Garden City,2018-05-30,2018-06-19,21
+Garden City,2018-06-21,2018-06-21,1
+Garden City,2018-06-26,2018-07-22,27
+Garden City,2018-07-24,2018-07-25,2
+Garden City,2018-07-30,2018-07-30,1
+Garden City,2018-08-09,2018-08-17,9
+Garden City,2018-08-20,2018-08-20,1
+Garden City,2018-08-23,2018-09-03,12
+Garden City,2018-09-08,2018-09-19,12
+Garden City,2018-09-21,2018-10-06,16
+Garden City,2018-10-10,2018-10-11,2
+Garden City,2019-04-01,2019-04-30,30
+Garden City,2019-05-02,2019-05-05,4
+Garden City,2019-05-09,2019-05-19,11
+Garden City,2019-05-22,2019-05-22,1
+Garden City,2019-05-24,2019-05-24,1
+Garden City,2019-05-28,2019-05-30,3
+Garden City,2019-06-08,2019-06-16,9
+Garden City,2019-06-19,2019-06-22,4
+Garden City,2019-06-24,2019-07-19,26
+Garden City,2019-07-22,2019-07-30,9
+Garden City,2019-08-01,2019-08-07,7
+Garden City,2019-08-09,2019-08-10,2
+Garden City,2019-08-12,2019-08-12,1
+Garden City,2019-08-14,2019-08-30,17
+Garden City,2019-09-01,2019-11-12,73
+Garden City,2019-11-28,2019-11-28,1
+Garden City,2019-12-20,2019-12-20,1
+Garden City,2019-12-22,2019-12-22,1
+Garden City,2019-12-25,2019-12-26,2
+Garden City,2019-12-30,2020-01-16,18
+Garden City,2020-01-18,2020-01-25,8
+Garden City,2020-03-30,2020-06-27,90
+Garden City,2020-06-29,2020-07-12,14
+Garden City,2020-07-16,2020-07-19,4
+Garden City,2020-07-21,2020-07-25,5
+Garden City,2020-07-28,2020-07-28,1
+Garden City,2020-07-31,2020-08-05,6
+Garden City,2020-08-07,2020-08-28,22
+Garden City,2020-08-30,2020-09-08,10
+Garden City,2020-09-10,2020-11-20,72
+Garden City,2020-11-22,2021-03-04,103
+Garden City,2021-03-06,2021-03-12,7
+Garden City,2021-03-15,2021-03-21,7
+Garden City,2021-03-23,2021-05-01,40
+Garden City,2021-05-04,2021-05-10,7
+Garden City,2021-05-14,2021-05-14,1
+Garden City,2021-05-20,2021-05-23,4
+Garden City,2021-05-26,2021-05-29,4
+Garden City,2021-06-01,2021-06-01,1
+Garden City,2021-06-03,2021-06-20,18
+Garden City,2021-06-22,2021-07-05,14
+Garden City,2021-07-07,2021-08-11,36
+Garden City,2021-08-14,2021-09-02,20
+Garden City,2021-09-05,2021-09-30,26
+Dodge City,1988-10-01,1989-07-12,285
+Dodge City,1989-07-14,1993-07-12,1460
+Dodge City,1993-07-15,1995-07-18,734
+Dodge City,1995-08-22,1996-01-16,148
+Dodge City,1996-01-19,1996-06-01,135
+Dodge City,1996-06-10,1996-06-11,2
+Dodge City,1996-06-16,1996-06-25,10
+Dodge City,1996-07-04,1996-07-23,20
+Dodge City,1996-07-25,1996-07-28,4
+Dodge City,1996-07-30,1996-08-03,5
+Dodge City,1997-05-23,1997-05-24,2
+Dodge City,1997-05-26,1997-05-27,2
+Dodge City,1997-07-18,1997-08-05,19
+Dodge City,1997-08-08,1997-08-09,2
+Dodge City,1998-09-19,1998-10-08,20
+Dodge City,2000-06-15,2001-02-04,235
+Dodge City,2001-02-06,2001-02-18,13
+Dodge City,2001-03-01,2001-03-02,2
+Dodge City,2001-04-25,2001-05-30,36
+Dodge City,2001-07-02,2003-08-28,788
+Dodge City,2003-08-31,2003-09-10,11
+Dodge City,2003-09-12,2021-09-30,6594
+Pawnee at Rozel,1988-10-01,1989-06-03,246
+Pawnee at Rozel,1989-08-12,1989-08-14,3
+Pawnee at Rozel,1989-09-04,1989-09-04,1
+Pawnee at Rozel,1989-09-06,1989-09-08,3
+Pawnee at Rozel,1989-09-20,1990-04-25,218
+Pawnee at Rozel,1990-07-08,1990-07-21,14
+Pawnee at Rozel,1990-08-08,1990-08-17,10
+Pawnee at Rozel,1990-09-06,1992-06-08,642
+Pawnee at Rozel,1992-06-15,1992-06-25,11
+Pawnee at Rozel,1992-09-04,1993-01-31,150
+Pawnee at Rozel,1994-06-05,1994-06-06,2
+Pawnee at Rozel,1994-06-22,1994-07-03,12
+Pawnee at Rozel,1994-07-09,1994-08-06,29
+Pawnee at Rozel,1994-08-14,1994-08-26,13
+Pawnee at Rozel,1994-09-05,1994-09-07,3
+Pawnee at Rozel,1994-09-16,1995-01-15,122
+Pawnee at Rozel,1995-02-13,1995-02-14,2
+Pawnee at Rozel,1995-03-02,1995-03-11,10
+Pawnee at Rozel,1995-04-15,1995-05-01,17
+Pawnee at Rozel,1995-07-01,1995-07-03,3
+Pawnee at Rozel,1995-07-15,1995-07-18,4
+Pawnee at Rozel,1995-08-09,1995-09-14,37
+Pawnee at Rozel,1995-09-23,1996-05-25,246
+Pawnee at Rozel,1996-06-12,1996-06-15,4
+Pawnee at Rozel,1996-07-05,1996-07-07,3
+Pawnee at Rozel,1996-07-12,1996-07-13,2
+Pawnee at Rozel,1996-07-15,1996-07-16,2
+Pawnee at Rozel,1996-07-20,1996-07-24,5
+Pawnee at Rozel,1998-09-21,1998-09-25,5
+Pawnee at Rozel,1998-09-29,1998-09-30,2
+Pawnee at Rozel,1998-10-27,1998-10-31,5
+Pawnee at Rozel,1999-08-27,1999-09-27,32
+Pawnee at Rozel,1999-10-04,1999-11-21,49
+Pawnee at Rozel,2000-08-07,2000-10-26,81
+Pawnee at Rozel,2000-11-04,2001-01-13,71
+Pawnee at Rozel,2001-05-01,2001-05-04,4
+Pawnee at Rozel,2001-05-24,2001-05-28,5
+Pawnee at Rozel,2001-06-25,2001-07-26,32
+Pawnee at Rozel,2001-08-03,2001-08-26,24
+Pawnee at Rozel,2001-08-29,2001-09-15,18
+Pawnee at Rozel,2001-10-15,2002-06-11,240
+Pawnee at Rozel,2002-06-25,2002-07-28,34
+Pawnee at Rozel,2002-08-06,2002-08-14,9
+Pawnee at Rozel,2002-09-09,2002-10-07,29
+Pawnee at Rozel,2002-10-23,2003-04-15,175
+Pawnee at Rozel,2003-04-17,2003-06-01,46
+Pawnee at Rozel,2003-06-04,2003-07-02,29
+Pawnee at Rozel,2003-07-06,2003-07-06,1
+Pawnee at Rozel,2003-07-12,2003-07-15,4
+Pawnee at Rozel,2003-07-19,2003-07-28,10
+Pawnee at Rozel,2003-08-01,2003-08-01,1
+Pawnee at Rozel,2003-08-04,2003-08-27,24
+Pawnee at Rozel,2003-10-04,2004-03-03,152
+Pawnee at Rozel,2004-03-05,2004-04-05,32
+Pawnee at Rozel,2004-04-08,2004-05-16,39
+Pawnee at Rozel,2004-06-05,2004-06-16,12
+Pawnee at Rozel,2004-08-17,2004-08-27,11
+Pawnee at Rozel,2004-08-30,2004-09-04,6
+Pawnee at Rozel,2004-09-11,2005-02-12,155
+Pawnee at Rozel,2005-02-14,2005-05-02,78
+Pawnee at Rozel,2005-05-06,2005-05-23,18
+Pawnee at Rozel,2005-05-25,2005-05-30,6
+Pawnee at Rozel,2005-06-02,2005-06-10,9
+Pawnee at Rozel,2005-06-23,2005-07-05,13
+Pawnee at Rozel,2005-07-13,2005-08-10,29
+Pawnee at Rozel,2005-08-14,2005-08-22,9
+Pawnee at Rozel,2005-09-04,2006-06-28,298
+Pawnee at Rozel,2006-06-30,2006-07-10,11
+Pawnee at Rozel,2006-07-19,2006-08-17,30
+Pawnee at Rozel,2006-09-04,2006-12-29,117
+Pawnee at Rozel,2007-01-28,2007-02-17,21
+Pawnee at Rozel,2007-03-20,2007-03-26,7
+Pawnee at Rozel,2007-05-17,2007-05-19,3
+Pawnee at Rozel,2007-07-01,2007-07-04,4
+Pawnee at Rozel,2007-07-07,2007-07-11,5
+Pawnee at Rozel,2007-08-17,2007-08-25,9
+Pawnee at Rozel,2007-09-12,2008-04-16,218
+Pawnee at Rozel,2008-04-22,2008-05-04,13
+Pawnee at Rozel,2008-06-12,2008-07-28,47
+Pawnee at Rozel,2008-08-01,2008-09-06,37
+Pawnee at Rozel,2008-09-10,2008-10-13,34
+Pawnee at Rozel,2008-11-14,2009-04-18,156
+Pawnee at Rozel,2009-05-03,2009-05-07,5
+Pawnee at Rozel,2009-05-20,2009-05-28,9
+Pawnee at Rozel,2009-06-02,2009-06-11,10
+Pawnee at Rozel,2009-07-07,2009-08-16,41
+Pawnee at Rozel,2009-08-30,2009-09-09,11
+Pawnee at Rozel,2009-09-25,2009-11-02,39
+Pawnee at Rozel,2009-11-11,2010-04-22,163
+Pawnee at Rozel,2010-05-03,2010-06-01,30
+Pawnee at Rozel,2010-06-06,2010-06-06,1
+Pawnee at Rozel,2010-06-09,2010-06-11,3
+Pawnee at Rozel,2010-07-03,2010-07-03,1
+Pawnee at Rozel,2010-08-02,2010-08-06,5
+Pawnee at Rozel,2010-08-09,2010-08-12,4
+Pawnee at Rozel,2010-08-16,2010-08-19,4
+Pawnee at Rozel,2010-08-22,2010-08-22,1
+Pawnee at Rozel,2010-09-07,2010-09-08,2
+Pawnee at Rozel,2010-09-11,2011-04-09,211
+Pawnee at Rozel,2011-04-11,2011-05-19,39
+Pawnee at Rozel,2011-06-03,2011-07-09,37
+Pawnee at Rozel,2011-07-11,2012-04-15,280
+Pawnee at Rozel,2012-04-21,2012-07-08,79
+Pawnee at Rozel,2012-07-16,2012-08-25,41
+Pawnee at Rozel,2012-09-15,2013-07-20,309
+Pawnee at Rozel,2013-07-22,2013-08-06,16
+Pawnee at Rozel,2013-08-24,2013-10-16,54
+Pawnee at Rozel,2013-10-23,2014-05-14,204
+Pawnee at Rozel,2014-05-26,2014-06-28,34
+Pawnee at Rozel,2014-07-11,2015-05-04,298
+Pawnee at Rozel,2015-05-08,2015-05-16,9
+Pawnee at Rozel,2015-05-19,2015-05-19,1
+Pawnee at Rozel,2015-06-28,2015-07-24,27
+Pawnee at Rozel,2015-08-14,2015-08-14,1
+Pawnee at Rozel,2015-08-23,2015-08-24,2
+Pawnee at Rozel,2015-09-01,2015-09-01,1
+Pawnee at Rozel,2015-09-04,2015-09-22,19
+Pawnee at Rozel,2015-09-26,2016-03-23,180
+Pawnee at Rozel,2016-03-27,2016-04-16,21
+Pawnee at Rozel,2016-06-19,2016-06-25,7
+Pawnee at Rozel,2016-08-23,2016-08-26,4
+Pawnee at Rozel,2016-09-07,2016-09-24,18
+Pawnee at Rozel,2016-09-30,2017-01-19,112
+Pawnee at Rozel,2017-01-24,2017-03-31,67
+Pawnee at Rozel,2017-07-12,2017-08-05,25
+Pawnee at Rozel,2017-08-08,2017-08-25,18
+Pawnee at Rozel,2017-08-27,2017-10-03,38
+Pawnee at Rozel,2017-10-28,2018-01-03,68
+Pawnee at Rozel,2018-02-11,2018-02-14,4
+Pawnee at Rozel,2018-02-27,2018-03-14,16
+Pawnee at Rozel,2018-03-21,2018-05-28,69
+Pawnee at Rozel,2018-06-05,2018-06-09,5
+Pawnee at Rozel,2018-06-14,2018-06-23,10
+Pawnee at Rozel,2018-10-04,2018-10-06,3
+Pawnee at Rozel,2020-10-08,2020-11-12,36
+Pawnee at Rozel,2021-07-29,2021-07-29,1
+Pawnee at Rozel,2021-08-11,2021-08-19,9
+Pawnee at Rozel,2021-09-20,2021-09-30,11
+Pawnee near Burdett,1988-10-01,1989-06-03,246
+Pawnee near Burdett,1989-06-20,1989-06-25,6
+Pawnee near Burdett,1989-07-01,1990-03-12,255
+Pawnee near Burdett,1990-03-15,1990-04-24,41
+Pawnee near Burdett,1990-05-15,1990-06-20,37
+Pawnee near Burdett,1990-07-03,1990-07-05,3
+Pawnee near Burdett,1990-07-09,1990-07-20,12
+Pawnee near Burdett,1990-08-05,1990-08-11,7
+Pawnee near Burdett,1990-09-01,1992-06-11,650
+Pawnee near Burdett,1992-06-16,1992-06-27,12
+Pawnee near Burdett,1992-07-09,1992-07-18,10
+Pawnee near Burdett,1992-08-30,1993-01-21,145
+Pawnee near Burdett,1993-01-23,1993-02-01,10
+Pawnee near Burdett,1993-02-05,1993-02-06,2
+Pawnee near Burdett,1993-03-26,1993-03-29,4
+Pawnee near Burdett,1993-04-17,1993-05-04,18
+Pawnee near Burdett,1993-05-09,1993-05-23,15
+Pawnee near Burdett,1993-06-11,1993-06-19,9
+Pawnee near Burdett,1994-07-10,1994-07-20,11
+Pawnee near Burdett,1994-07-27,1994-08-06,11
+Pawnee near Burdett,1994-08-12,1994-08-26,15
+Pawnee near Burdett,1994-09-06,1994-09-06,1
+Pawnee near Burdett,1994-09-13,1994-12-14,93
+Pawnee near Burdett,1995-01-01,1995-01-08,8
+Pawnee near Burdett,1995-09-07,1995-09-12,6
+Pawnee near Burdett,1995-10-06,1995-11-15,41
+Pawnee near Burdett,1995-11-28,1996-01-05,39
+Pawnee near Burdett,1996-02-26,1996-05-25,90
+Pawnee near Burdett,1996-06-06,1996-06-15,10
+Pawnee near Burdett,1996-06-21,1996-06-21,1
+Pawnee near Burdett,1998-09-08,1998-10-03,26
+Pawnee near Burdett,1998-10-14,1998-10-20,7
+Pawnee near Burdett,1999-09-05,1999-09-16,12
+Pawnee near Burdett,1999-10-17,1999-10-29,13
+Pawnee near Burdett,2000-06-16,2000-06-26,11
+Pawnee near Burdett,2000-08-17,2000-08-18,2
+Pawnee near Burdett,2000-08-25,2001-02-23,183
+Pawnee near Burdett,2001-03-07,2001-04-12,37
+Pawnee near Burdett,2001-04-24,2001-05-10,17
+Pawnee near Burdett,2001-05-14,2001-05-29,16
+Pawnee near Burdett,2001-06-01,2001-06-01,1
+Pawnee near Burdett,2001-06-03,2001-06-04,2
+Pawnee near Burdett,2001-06-27,2001-07-28,32
+Pawnee near Burdett,2001-08-02,2001-09-16,46
+Pawnee near Burdett,2001-09-30,2002-05-04,217
+Pawnee near Burdett,2002-05-09,2002-06-11,34
+Pawnee near Burdett,2002-06-27,2002-07-27,31
+Pawnee near Burdett,2002-08-06,2002-08-26,21
+Pawnee near Burdett,2002-08-31,2002-10-02,33
+Pawnee near Burdett,2002-10-08,2004-05-16,587
+Pawnee near Burdett,2004-05-25,2004-06-18,25
+Pawnee near Burdett,2004-06-30,2004-06-30,1
+Pawnee near Burdett,2004-07-15,2004-07-28,14
+Pawnee near Burdett,2004-08-07,2005-06-21,319
+Pawnee near Burdett,2005-06-25,2005-07-04,10
+Pawnee near Burdett,2005-07-10,2005-09-14,67
+Pawnee near Burdett,2005-09-16,2006-08-18,337
+Pawnee near Burdett,2006-08-24,2006-12-29,128
+Pawnee near Burdett,2007-01-10,2007-02-17,39
+Pawnee near Burdett,2007-02-28,2007-03-24,25
+Pawnee near Burdett,2007-04-09,2007-04-13,5
+Pawnee near Burdett,2007-04-26,2007-05-05,10
+Pawnee near Burdett,2007-05-07,2007-05-16,10
+Pawnee near Burdett,2007-05-20,2007-05-23,4
+Pawnee near Burdett,2007-05-31,2007-06-09,10
+Pawnee near Burdett,2007-06-11,2007-06-12,2
+Pawnee near Burdett,2007-06-15,2007-07-11,27
+Pawnee near Burdett,2007-07-21,2007-07-29,9
+Pawnee near Burdett,2007-08-05,2007-08-08,4
+Pawnee near Burdett,2007-08-12,2007-10-08,58
+Pawnee near Burdett,2007-10-13,2008-05-06,207
+Pawnee near Burdett,2008-05-22,2008-05-23,2
+Pawnee near Burdett,2008-06-06,2008-06-23,18
+Pawnee near Burdett,2008-06-28,2008-07-17,20
+Pawnee near Burdett,2008-07-19,2008-07-28,10
+Pawnee near Burdett,2008-07-30,2008-08-06,8
+Pawnee near Burdett,2008-08-11,2008-09-11,32
+Pawnee near Burdett,2008-09-17,2008-10-13,27
+Pawnee near Burdett,2008-11-03,2008-11-12,10
+Pawnee near Burdett,2008-11-16,2008-11-29,14
+Pawnee near Burdett,2008-12-04,2008-12-10,7
+Pawnee near Burdett,2008-12-14,2008-12-26,13
+Pawnee near Burdett,2008-12-28,2009-04-17,111
+Pawnee near Burdett,2009-05-17,2009-06-11,26
+Pawnee near Burdett,2009-07-01,2009-08-18,49
+Pawnee near Burdett,2009-08-21,2009-09-07,18
+Pawnee near Burdett,2009-09-26,2009-10-21,26
+Pawnee near Burdett,2009-10-25,2009-10-25,1
+Pawnee near Burdett,2009-11-14,2009-11-14,1
+Pawnee near Burdett,2009-12-02,2009-12-20,19
+Pawnee near Burdett,2009-12-26,2009-12-27,2
+Pawnee near Burdett,2009-12-29,2010-01-17,20
+Pawnee near Burdett,2010-01-27,2010-02-06,11
+Pawnee near Burdett,2010-02-16,2010-04-21,65
+Pawnee near Burdett,2010-05-06,2010-06-11,37
+Pawnee near Burdett,2010-06-23,2010-08-23,62
+Pawnee near Burdett,2010-08-26,2011-05-19,267
+Pawnee near Burdett,2011-05-22,2012-04-03,318
+Pawnee near Burdett,2012-04-05,2012-04-13,9
+Pawnee near Burdett,2012-04-16,2012-07-08,84
+Pawnee near Burdett,2012-07-12,2012-08-24,44
+Pawnee near Burdett,2012-09-08,2013-05-30,265
+Pawnee near Burdett,2013-06-06,2013-06-16,11
+Pawnee near Burdett,2013-06-19,2014-06-30,377
+Pawnee near Burdett,2014-07-03,2015-05-28,330
+Pawnee near Burdett,2015-06-18,2015-07-24,37
+Pawnee near Burdett,2015-08-09,2016-04-16,252
+Pawnee near Burdett,2016-04-26,2016-04-28,3
+Pawnee near Burdett,2016-05-09,2016-05-28,20
+Pawnee near Burdett,2016-06-01,2016-07-01,31
+Pawnee near Burdett,2016-07-17,2016-07-28,12
+Pawnee near Burdett,2016-08-03,2016-08-06,4
+Pawnee near Burdett,2016-08-15,2016-08-24,10
+Pawnee near Burdett,2016-09-04,2017-03-28,206
+Pawnee near Burdett,2017-03-30,2017-03-31,2
+Pawnee near Burdett,2017-04-13,2017-04-28,16
+Pawnee near Burdett,2017-06-02,2017-06-06,5
+Pawnee near Burdett,2017-06-11,2017-07-02,22
+Pawnee near Burdett,2017-07-05,2017-07-05,1
+Pawnee near Burdett,2017-07-10,2017-09-24,77
+Pawnee near Burdett,2017-09-27,2017-09-30,4
+Pawnee near Burdett,2017-10-22,2018-07-06,258
+Pawnee near Burdett,2018-07-09,2018-07-26,18
+Pawnee near Burdett,2018-08-10,2018-08-18,9
+Pawnee near Burdett,2018-09-01,2018-10-07,37
+Pawnee near Burdett,2018-11-02,2018-11-12,11
+Pawnee near Burdett,2018-12-09,2018-12-12,4
+Pawnee near Burdett,2018-12-15,2018-12-26,12
+Pawnee near Burdett,2019-08-22,2019-08-24,3
+Pawnee near Burdett,2019-09-02,2019-12-05,95
+Pawnee near Burdett,2020-06-14,2020-06-19,6
+Pawnee near Burdett,2020-07-11,2020-07-14,4
+Pawnee near Burdett,2020-08-27,2020-08-28,2
+Pawnee near Burdett,2020-09-22,2020-09-22,1
+Pawnee near Burdett,2020-09-26,2020-11-03,39
+Pawnee near Burdett,2021-07-29,2021-08-05,8
+Pawnee near Burdett,2021-08-09,2021-09-30,53
+Buckner at Hanston,NA,2009-08-01,NA
+Buckner at Hanston,2009-08-03,2009-08-17,15
+Buckner at Hanston,2009-08-28,2009-09-07,11
+Buckner at Hanston,2009-10-04,2009-10-16,13
+Buckner at Hanston,2010-01-30,2010-02-02,4
+Buckner at Hanston,2010-03-07,2010-03-30,24
+Buckner at Hanston,2010-04-07,2010-04-15,9
+Buckner at Hanston,2010-05-03,2010-05-16,14
+Buckner at Hanston,2010-06-04,2010-06-11,8
+Buckner at Hanston,2010-06-30,2010-07-05,6
+Buckner at Hanston,2010-07-08,2010-07-14,7
+Buckner at Hanston,2010-07-25,2010-08-23,30
+Buckner at Hanston,2010-08-26,2011-01-26,154
+Buckner at Hanston,2011-02-14,2011-02-15,2
+Buckner at Hanston,2011-03-05,2011-05-18,75
+Buckner at Hanston,2011-05-23,2012-03-21,304
+Buckner at Hanston,2012-03-23,2012-04-01,10
+Buckner at Hanston,2012-04-08,2012-04-13,6
+Buckner at Hanston,2012-04-18,2012-08-23,128
+Buckner at Hanston,2012-08-25,2012-10-12,49
+Buckner at Hanston,2012-10-14,2013-07-28,288
+Buckner at Hanston,2013-07-30,2013-08-03,5
+Buckner at Hanston,2013-08-16,2014-05-11,269
+Buckner at Hanston,2014-05-15,2014-06-30,47
+Buckner at Hanston,2014-07-04,2014-07-18,15
+Buckner at Hanston,2014-07-21,2015-05-24,308
+Buckner at Hanston,2015-05-28,2015-05-28,1
+Buckner at Hanston,2015-05-31,2015-06-01,2
+Buckner at Hanston,2015-06-06,2015-06-13,8
+Buckner at Hanston,2015-06-15,2015-07-26,42
+Buckner at Hanston,2015-07-28,2016-04-15,263
+Buckner at Hanston,2016-05-16,2016-05-16,1
+Buckner at Hanston,2016-05-19,2016-05-20,2
+Buckner at Hanston,2016-06-12,2016-06-24,13
+Buckner at Hanston,2016-08-19,2016-08-26,8
+Buckner at Hanston,2016-09-01,2016-09-01,1
+Buckner at Hanston,2016-09-03,2016-09-23,21
+Buckner at Hanston,2016-09-25,2016-11-30,67
+Buckner at Hanston,2016-12-10,2016-12-12,3
+Buckner at Hanston,2017-01-07,2017-01-11,5
+Buckner at Hanston,2017-01-29,2017-01-29,1
+Buckner at Hanston,2017-02-01,2017-03-28,56
+Buckner at Hanston,2017-07-11,2017-07-16,6
+Buckner at Hanston,2017-07-24,2017-09-24,63
+Buckner at Hanston,2017-09-26,2017-09-28,3
+Buckner at Hanston,2017-10-01,2017-10-03,3
+Buckner at Hanston,2017-10-05,2017-10-05,1
+Buckner at Hanston,2017-10-27,2017-10-28,2
+Buckner at Hanston,2017-10-30,2017-11-01,3
+Buckner at Hanston,2017-11-25,2017-11-29,5
+Buckner at Hanston,2017-12-01,2017-12-09,9
+Buckner at Hanston,2018-03-04,2018-03-20,17
+Buckner at Hanston,2018-03-28,2018-03-31,4
+Buckner at Hanston,2018-04-05,2018-04-11,7
+Buckner at Hanston,2018-04-16,2018-04-18,3
+Buckner at Hanston,2018-06-15,2018-06-22,8
+Buckner at Hanston,2021-08-03,2021-08-06,4
+Buckner at Hanston,2021-09-25,NA,NA
+Buckner near Jetmore,NA,2009-08-17,NA
+Buckner near Jetmore,2011-07-07,2011-07-09,3
+Buckner near Jetmore,2011-07-11,2011-12-18,161
+Buckner near Jetmore,2012-05-26,2013-06-16,387
+Buckner near Jetmore,2013-06-21,2013-08-03,44
+Buckner near Jetmore,2013-08-05,2013-08-05,1
+Buckner near Jetmore,2013-08-12,2014-06-25,318
+Buckner near Jetmore,2014-07-13,2014-07-15,3
+Buckner near Jetmore,2014-07-25,2014-07-29,5
+Buckner near Jetmore,2014-08-01,2014-08-07,7
+Buckner near Jetmore,2014-08-09,2014-10-04,57
+Buckner near Jetmore,2014-10-06,2015-02-05,123
+Buckner near Jetmore,2015-04-02,2015-05-06,35
+Buckner near Jetmore,2015-05-08,2015-05-13,6
+Buckner near Jetmore,2015-05-15,2015-05-16,2
+Buckner near Jetmore,2015-10-12,NA,NA
+Buckner below Horsethief,NA,2009-09-13,NA
+Buckner below Horsethief,2011-07-08,2011-11-10,126
+Buckner below Horsethief,2012-06-28,2012-06-30,3
+Buckner below Horsethief,2012-07-02,2012-07-08,7
+Buckner below Horsethief,2012-07-16,2012-11-25,133
+Buckner below Horsethief,2012-11-28,2012-11-28,1
+Buckner below Horsethief,2013-02-11,2013-02-11,1
+Buckner below Horsethief,2013-06-12,2013-06-12,1
+Buckner below Horsethief,2013-07-16,2013-07-24,9
+Buckner below Horsethief,2013-07-28,2013-08-03,7
+Buckner below Horsethief,2013-08-24,2013-09-19,27
+Buckner below Horsethief,2013-11-07,2013-11-08,2
+Buckner below Horsethief,2014-07-26,2014-07-26,1
+Buckner below Horsethief,2014-07-29,2014-07-29,1
+Buckner below Horsethief,2014-08-02,2014-08-07,6
+Buckner below Horsethief,2014-08-13,2014-09-15,34
+Buckner below Horsethief,2020-12-27,2020-12-28,2
+Buckner below Horsethief,2021-02-16,NA,NA
+Buckner above Horsethief,NA,2010-08-03,NA
+Buckner above Horsethief,2011-07-04,2011-09-18,77
+Buckner above Horsethief,2011-10-04,2011-10-08,5
+Buckner above Horsethief,2012-06-28,2012-06-30,3
+Buckner above Horsethief,2012-07-05,2012-07-08,4
+Buckner above Horsethief,2012-07-18,2012-09-13,58
+Buckner above Horsethief,2012-09-15,2012-11-24,71
+Buckner above Horsethief,2013-07-06,2013-08-03,29
+Buckner above Horsethief,2013-08-22,2013-09-06,16
+Buckner above Horsethief,2013-09-08,NA,NA
