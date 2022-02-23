@@ -2,7 +2,7 @@
 
 source(file.path("code", "paths+packages.R"))
 
-# load output from Data_Meteorology_01-Download.R
+# load output from Meteorology_01-Download.R
 df <- readr::read_csv(file.path("data", "Meteorology_Daily_Raw.csv"))
 
 # retain the highest priority measurement for each date and variable
