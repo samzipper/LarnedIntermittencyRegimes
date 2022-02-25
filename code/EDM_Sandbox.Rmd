@@ -1,0 +1,87 @@
+---
+title: "Messing around with Empirical Dynamic Modeling (EDM)"
+output: rmarkdown::github_document
+---
+# EDM package and documentation
+  
+[rEDM package github](https://github.com/SugiharaLab/rEDM)
+
+# Load packages
+```{r}
+library(tidyverse)
+library(lubridate)
+library(rEDM)
+options(dplyr.summarise.inform=F)   # suppress summarize info
+
+```
+
+# Load streamflow data, summarize to weekly and monthly no-flow days
+```{r}
+# daily discharge
+df_day <- 
+  read_csv(file.path("..", "data", "Streamflow+Stage_Daily_Clean.csv")) %>% 
+  mutate(Year = year(Date),
+         Month = month(Date),
+         Week = week(Date))
+
+ggplot(df_day, aes(x = Date, y = discharge_cms)) +
+  geom_line()
+
+# weekly no-flow
+df_week <- 
+  df_day %>% 
+  group_by(Year, Week) %>% 
+  summarize(Date_Start = min(Date),
+            noflow_n = sum(discharge_cms == 0),
+            noflow_prc = noflow_n/n())
+
+ggplot(df_week, aes(x = Date_Start, y = noflow_prc)) +
+  geom_line()
+
+# monthly no-flow
+df_month <- 
+  df_day %>% 
+  group_by(Year, Month) %>% 
+  summarize(Date_Start = min(Date),
+            noflow_n = sum(discharge_cms == 0),
+            noflow_prc = noflow_n/n())
+
+ggplot(df_month, aes(x = Date_Start, y = noflow_prc)) +
+  geom_line()
+
+```
+
+# Apply EDM to daily discharge data
+```{r}
+# directly following github example
+df_day_forEDM <- df_day %>% 
+  dplyr::select(Date, discharge_cms)
+  
+E.opt = EmbedDimension( dataFrame = df_day_forEDM,    # input data
+                        lib     = "1 8401", # portion of data to train
+                        pred    = "1 8401", # portion of data to predict
+                        columns = "discharge_cms",
+                        target  = "discharge_cms" )
+
+E.opt
+
+```
+
+```{r}
+
+simplex = Simplex( dataFrame = df_day_forEDM, 
+                   lib     = "1   5600", # portion of data to train
+                   pred    = "5601 8401", # portion of data to predict
+                   columns = "discharge_cms",
+                   target  = "discharge_cms",
+                   E       = 2 )
+
+simplex %>% 
+  pivot_longer(c("Observations", "Predictions")) %>% 
+  ggplot(aes(x = Date, y = value, color = name)) +
+  geom_line()
+
+# fit stat
+hydroGOF::KGE(simplex$Predictions, simplex$Observations)
+
+```
