@@ -67,7 +67,7 @@ df_met_yr <-
 ## plots - annual histograms
 p_Q_yr <- 
   ggplot(df_Q_yr, aes(x = prc_noflow)) +
-  geom_histogram(breaks = seq(0, 1, 0.1), fill = col.cat.blu, color = "white") +
+  geom_histogram(breaks = seq(0, 1, 0.1), fill = col.ark, color = "white") +
   scale_y_continuous(name = "Number of Water Years", expand = expansion(mult = c(0, 0.02)),
                      breaks = seq(0, 10, 2)) +
   scale_x_continuous(name = "No-Flow Days [% of Water Year]", 
@@ -98,7 +98,7 @@ max(df_wuse_yr$WaterUse_m3/1e6)
 wuse_breaks <- seq(4, 8.5, 0.5)
 p_wuse_yr <-
   ggplot(df_wuse_yr, aes(x = WaterUse_m3/1e6)) +
-  geom_histogram(fill = col.cat.blu, 
+  geom_histogram(fill = col.hpa, 
                  color = "white", 
                  breaks = wuse_breaks) +
   scale_y_continuous(name = "Number of Years", expand = expansion(mult = c(0, 0.02)),
@@ -123,7 +123,7 @@ length(df_Q_yr$prc_noflow)
 ## plots - monthly histograms
 p_Q_mo <- 
   ggplot(df_Q_mo, aes(x = prc_noflow)) +
-  geom_histogram(breaks = seq(0, 1, 0.1), fill = col.cat.blu, color = "white") +
+  geom_histogram(breaks = seq(0, 1, 0.1), fill = col.ark, color = "white") +
   scale_y_continuous(name = "Number of Months", expand = expansion(mult = c(0, 0.02))) +
   scale_x_continuous(name = "No-Flow Days [% of Month]", 
                      breaks = seq(0, 1, 0.2),
@@ -184,20 +184,18 @@ p_Q_ts_mo <-
   #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
   #                                          fill = regime_category), alpha = 0.25) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
-  geom_line(data = df_Q_mo, aes(x = date_mid, y = prc_noflow), color = col.cat.blu) +
+  geom_line(data = df_Q_mo, aes(x = date_mid, y = prc_noflow), color = col.ark) +
   scale_y_continuous(name = "No-Flow Days\n[% of Month]", labels = scales::percent) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
 
 p_met_ts_mo <-
   ggplot() +
   #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
   #                                          fill = regime_category), alpha = 0.25) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
-  geom_col(data = df_met_mo, aes(x = date_mid, y = prcp_mm), fill = "black", color = "black") +
+  geom_col(data = df_met_mo, aes(x = date_mid, y = prcp_mm), fill = col.cat.blu, color = col.cat.blu) +
   scale_y_continuous(name = "Monthly Precipitation\n[mm]", expand = expansion(mult = c(0,0.02))) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
 
 p_SPEI_3mo <-
   ggplot() +
@@ -207,8 +205,7 @@ p_SPEI_3mo <-
   geom_col(data = df_met_mo, aes(x = date_mid, y = SPEI_3mo), color = "black") +
   geom_hline(yintercept = 0, color = col.gray) +
   scale_y_continuous(name = "SPEI [3 mo]", limits = c(-2.6, 2.6)) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
 
 p_SPEI_12mo <- 
   ggplot() +
@@ -218,8 +215,7 @@ p_SPEI_12mo <-
   geom_col(data = df_met_mo, aes(x = date_mid, y = SPEI_12mo), color = "black") +
   geom_hline(yintercept = 0, color = col.gray) +
   scale_y_continuous(name = "SPEI [12 mo]", limits = c(-2.6, 2.6)) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
 
 p_ts_mo <-
   (p_Q_ts_mo + p_met_ts_mo) +
@@ -236,11 +232,10 @@ p_wuse_ts_mo.yr <-
   #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
   #                                          fill = regime_category), alpha = 0.25) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
-  geom_line(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
-  geom_point(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = "black") +
+  geom_line(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = col.hpa) +
+  geom_point(data = df_wuse_yr, aes(x = ymd(paste0(Year,"-01-01")) + days(182), y = WaterUse_m3/1e6), color = col.hpa) +
   scale_y_continuous(name = "Annual Pumping\n[million m\u00b3]") +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
 
 p_ts_mo.yr <-
   (p_Q_ts_mo + p_met_ts_mo + p_wuse_ts_mo.yr) +
@@ -259,33 +254,30 @@ df_regimes_startend$WaterYear_start[1] <- -Inf
 df_regimes_startend$WaterYear_end[5] <- Inf
 p_Q_ts_yr <-
   ggplot() +
-  geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
-                                            fill = regime_category), alpha = 0.25) +
+  #geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
+  #                                          fill = regime_category), alpha = 0.25) +
   geom_line(data = df_Q_yr, aes(x = WaterYear, y = prc_noflow), color = "black") +
   geom_point(data = df_Q_yr, aes(x = WaterYear, y = prc_noflow), color = "black") +
   scale_y_continuous(name = "No-Flow Days [% of Water Year]", labels = scales::percent) +
-  scale_x_continuous(name = "Water Year") +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_continuous(name = "Water Year")
 
 p_met_ts_yr <-
   ggplot() +
-  geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
-                                            fill = regime_category), alpha = 0.25) +
-  geom_line(data = df_met_yr, aes(x = WaterYear, y = prcp_mm)) +
-  geom_point(data = df_met_yr, aes(x = WaterYear, y = prcp_mm)) +
+  #geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
+  #                                          fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_met_yr, aes(x = WaterYear, y = prcp_mm), color = col.cat.blu) +
+  geom_point(data = df_met_yr, aes(x = WaterYear, y = prcp_mm), color = col.cat.blu) +
   scale_y_continuous(name = "Annual Precipitation [mm]") +
-  scale_x_continuous(name = "Water Year") +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_continuous(name = "Water Year")
 
 p_wuse_ts_yr <-
   ggplot() +
-  geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
-                                            fill = regime_category), alpha = 0.25) +
-  geom_line(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = "black") +
-  geom_point(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = "black") +
+  #geom_rect(data = df_regimes_startend, aes(xmin = WaterYear_start, xmax = WaterYear_end, ymin = -Inf, ymax = Inf, 
+  #                                          fill = regime_category), alpha = 0.25) +
+  geom_line(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = col.hpa) +
+  geom_point(data = df_wuse_yr, aes(x = Year, y = WaterUse_m3/1e6), color = col.hpa) +
   scale_y_continuous(name = "Pumping within 4 km [million m\u00b3]") +
-  scale_x_continuous(name = "Year", limits = c(min(df_Q_yr$WaterYear), max(df_Q_yr$WaterYear))) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_continuous(name = "Year", limits = c(min(df_Q_yr$WaterYear), max(df_Q_yr$WaterYear)))
 
 p_ts_yr <-
   (p_Q_ts_yr + p_met_ts_yr + p_wuse_ts_yr) +

@@ -32,6 +32,10 @@ col.cat.red <- "#e6194b"   # red
 col.cat.blu <- "#0082c8"   # blue
 col.gray <- "gray65"       # gray for annotation lines, etc
 
+col.ark <- "#7570b3"
+col.alv <- "#d95f02"
+col.hpa <- "#1b9e77"
+
 ## ggplot theme
 windowsFonts(Arial=windowsFont("TT Arial"))
 theme_scz <- function(...){
