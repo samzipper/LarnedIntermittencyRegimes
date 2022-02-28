@@ -56,3 +56,13 @@ ggplot() +
                 expand = c(0, 0))
 ggsave(file.path("figures+tables", "Streamflow-Upstream_PlotArk+PawneeHydrographs.png"),
        width = 190, height = 140, units = "mm")
+
+sum(subset(df_dry_all, gagename == "Pawnee at Rozel" & last_noflow_date >= ymd("1998-10-01") & last_noflow_date <= ymd("2018-05-28"))$total_noflow_days)
+length(seq(ymd("1998-10-01"), ymd("2018-05-31"), by = "day"))
+length(subset(df_dry_all, gagename == "Pawnee at Rozel" & last_noflow_date >= ymd("1998-10-01") & last_noflow_date <= ymd("2018-05-28"))$total_noflow_days)
+mean(subset(df_dry_all, gagename == "Pawnee at Rozel" & last_noflow_date >= ymd("1998-10-01") & last_noflow_date <= ymd("2018-05-28"))$total_noflow_days)
+
+
+sum(subset(df_dry_all, gagename == "Pawnee at Rozel" & last_noflow_date >= ymd("2018-06-01") & last_noflow_date <= ymd("2021-09-30"))$total_noflow_days)
+length(seq(ymd("2018-06-01"), ymd("2021-09-30"), by = "day"))
+length(subset(df_dry_all, gagename == "Pawnee at Rozel" & last_noflow_date >= ymd("2018-06-01") & last_noflow_date <= ymd("2021-09-30"))$total_noflow_days)

@@ -19,6 +19,10 @@ df_met_mo <-
   read_csv(file.path("data", "Meteorology_Monthly+SPEI.csv")) %>% 
   subset(date_mid >= first_date & date_mid <= last_date)
 
+df_met.pawnee_mo <- 
+  read_csv(file.path("data", "Meteorology-Pawnee_Monthly+SPEI.csv")) %>% 
+  subset(date_mid >= first_date & date_mid <= last_date)
+
 rad_best <- 4000  # this is determined in script WaterUse_03-DisaggregateToDaily.R
 df_wuse_yr <- read_csv(file.path("data", "WaterUse_AnnualByRadius.csv")) %>% 
   subset(radius_m == rad_best & Year >= min(df_Q_day$WaterYear) & Year <= max(df_Q_day$WaterYear))
@@ -339,3 +343,36 @@ ggsave(file.path("figures+tables", "StableStates_Hyst-12mo_NoArrows.png"),
        p_hyst_combo, width = 190, height = 95, units = "mm")
 ggsave(file.path("figures+tables", "StableStates_Hyst-12mo.pdf"),
        p_hyst_combo, width = 190, height = 95, units = "mm", device = cairo_pdf)
+
+
+#### Pawnee River meteorology analysis - look for bimodality and jumps
+min(df_met.pawnee_mo$prcp_mm)
+max(df_met.pawnee_mo$prcp_mm)
+prcp_mo_breaks <- seq(0, 400, 50)
+p_met.pawnee_mo <-
+  ggplot(df_met.pawnee_mo, aes(x = prcp_mm)) +
+  geom_histogram(fill = col.cat.blu, 
+                 breaks = prcp_mo_breaks, 
+                 color = "white") +
+  scale_y_continuous(name = "Number of Months", expand = expansion(mult = c(0, 0.02))) +
+  scale_x_continuous(name = "Precipitation [mm]",
+                     limits = c(min(prcp_mo_breaks), max(prcp_mo_breaks)),
+                     expand = expansion(mult = 0)) +
+  theme(plot.margin = margin(t = 1, r = 10, b = 1, l = 1, unit = "pt"))
+
+p_met.pawnee_ts_mo <-
+  ggplot() +
+  #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
+  #                                          fill = regime_category), alpha = 0.25) +
+  geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
+  geom_col(data = df_met.pawnee_mo, aes(x = date_mid, y = prcp_mm), fill = "black", color = "black") +
+  scale_y_continuous(name = "Monthly Precipitation [mm]", expand = expansion(mult = c(0,0.02))) +
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
+  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+
+p_pawnee_combo <- 
+  (p_met.pawnee_mo + p_met.pawnee_ts_mo) +
+  plot_layout(ncol = 2, widths = c(1, 2.25))
+
+ggsave(file.path("figures+tables", "StableStates_Pawnee_Hist+Ts.png"),
+       p_pawnee_combo, width = 190, height = 95, units = "mm")

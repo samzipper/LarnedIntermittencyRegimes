@@ -46,12 +46,19 @@ df_all <-
   dplyr::mutate(Year = year(date),
                 Month = month(date))
 
+## gap-filling
+# for temperature, fill in gaps <= 5 days by linear interpolation
+df_all$tmax_c <- na.approx(df_all$tmax_c, maxgap = 5)
+df_all$tmin_c <- na.approx(df_all$tmin_c, maxgap = 5)
+df_all$station_tmax[is.na(df_all$station_tmax) & is.finite(df_all$tmax_c)] <- "Gapfill"
+df_all$station_tmin[is.na(df_all$station_tmin) & is.finite(df_all$tmin_c)] <- "Gapfill"
+
 # inspect for completeness
 rnoaa::vis_miss(df_all)
 df_all$date[is.na(df_all$prcp_mm)]
 df_all$date[is.na(df_all$tmax_c)]
 df_all$date[is.na(df_all$tmin_c)]
-df_full <- subset(df_all, Year >= 1907) # precip complete 1907-present
+df_full <- subset(df_all, Year >= 1907) # all are complete 1907-present
 
 #### now, QA/QC. steps are to:
 # - identify outliers
@@ -61,7 +68,7 @@ df_full <- subset(df_all, Year >= 1907) # precip complete 1907-present
 ## identify outliers: tmin > tmax (5 dates) - manually fix
 i_backwards <- which(df_full$tmin_c > df_full$tmax_c)
 dates_backwards <- df_full$date[i_backwards]
-# 1907-02-07: replace with next highest priority station
+# 1907-02-05: replace with next highest priority station
 df[df$date == dates_backwards[1], ]
 df_full$tmax_c[i_backwards[1]] <- df$tmax_c[df$date == dates_backwards[1] & df$Priority == 11]
 df_full$tmin_c[i_backwards[1]] <- df$tmin_c[df$date == dates_backwards[1] & df$Priority == 11]
@@ -192,18 +199,18 @@ df_full[i_outliers[11], "station_tmin"] <-
   df$Station[df$date == dates_outliers[11] & df$Priority == 11]
 df_full[i_outliers[11],]
 
+# check missing dates
+df_full$date[is.na(df_full$prcp_mm)]
+df_full$date[is.na(df_full$tmax_c)]
+df_full$date[is.na(df_full$tmin_c)]
+
 #### save data
 df_full %>% 
   dplyr::select(-Year, -Month) %>%
   write_csv(file.path("data", "Meteorology-Pawnee_Daily_Clean.csv"))
 
+
 # break down by source
 table(df_full$station_prcp)
 table(df_full$station_tmax)
 table(df_full$station_tmin)
-
-# stats for 1999-2021 water years
-df_focus <- subset(df_full, date >= ymd("1999-10-01"))
-table(df_focus$station_prcp)  # (2971+4434)/8036
-table(df_focus$station_tmax)  # (3059+4300)/8036
-table(df_focus$station_tmin)  # (3059+4300)/8036
