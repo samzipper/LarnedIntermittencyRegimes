@@ -357,14 +357,14 @@ p_met.pawnee_ts_mo <-
   #geom_rect(data = df_regimes_startend, aes(xmin = date_start, xmax = date_end, ymin = -Inf, ymax = Inf, 
   #                                          fill = regime_category), alpha = 0.25) +
   geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
-  geom_col(data = df_met.pawnee_mo, aes(x = date_mid, y = prcp_mm), fill = "black", color = "black") +
+  geom_col(data = df_met.pawnee_mo, aes(x = date_mid, y = prcp_mm), fill = col.cat.blu) +
   scale_y_continuous(name = "Monthly Precipitation [mm]", expand = expansion(mult = c(0,0.02))) +
-  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0)) +
-  scale_fill_manual(name = "Regime", values = c("Dry" = col.cat.red, "Wet" = col.cat.blu))
+  scale_x_date(name = "Date", limits = c(min(df_Q_mo$date_mid), max(df_Q_mo$date_mid)), expand = c(0,0))
 
 p_pawnee_combo <- 
   (p_met.pawnee_mo + p_met.pawnee_ts_mo) +
-  plot_layout(ncol = 2, widths = c(1, 2.25))
+  plot_layout(ncol = 2, widths = c(1, 2.25)) +
+  plot_annotation(tag_levels = 'a', tag_prefix = "(", tag_suffix = ")")
 
 ggsave(file.path("figures+tables", "StableStates_Pawnee_Hist+Ts.png"),
        p_pawnee_combo, width = 190, height = 95, units = "mm")

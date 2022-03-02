@@ -210,7 +210,11 @@ df_full %>%
   write_csv(file.path("data", "Meteorology-Pawnee_Daily_Clean.csv"))
 
 
-# break down by source
-table(df_full$station_prcp)
-table(df_full$station_tmax)
-table(df_full$station_tmin)
+# break down by source, 1998-2021
+df_test <- 
+  file.path("data", "Meteorology-Pawnee_Daily_Clean.csv") %>% 
+  read_csv() %>% 
+  subset(date >= ymd("1998-10-01"))
+table(df_test$station_prcp)
+table(df_test$station_tmax)
+table(df_test$station_tmin)

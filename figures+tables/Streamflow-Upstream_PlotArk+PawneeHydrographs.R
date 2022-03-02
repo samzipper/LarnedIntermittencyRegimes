@@ -30,6 +30,17 @@ df_dry_all <-
   bind_rows(df_dry_upstream) %>% 
   mutate(gage_factor = factor(gagename, levels = gages_plot, labels = gage_labels))
 
+# regime shifts
+df_regimes <- read_csv(file.path("data", "RegimeShifts_rstars.csv"))
+df_regime_dates <- subset(df_regimes, ts_regime_shift != 0)
+df_regimes_startend <- tibble(
+  date_start = c(min(df_regimes$date_mid), df_regime_dates$date_mid),
+  date_end = c(df_regime_dates$date_mid, max(df_regimes$date_mid)),
+  regime_category = c("Wet", "Dry", "Wet", "Dry", "Wet")
+) %>% 
+  mutate(WaterYear_start = decimal_date(date_start + days(92)),
+         WaterYear_end = decimal_date(date_end + days(92)))
+
 # set minimum for plotting
 min_q <- 0.001
 df_day$discharge_forlog <- df_day$discharge_cms
@@ -45,17 +56,19 @@ ggplot() +
   #geom_rect(data = df_dry_upstream, aes(xmin = first_noflow_date, xmax = last_noflow_date,
   #                                     ymin = min_q, ymax = min_q+min_q/2), 
   #          color = "transparent", fill = col.cat.red) +
-  geom_line() +
   geom_hline(yintercept = min_q, color = col.gray) +
+  geom_vline(data = df_regimes_startend[1:4, ], aes(xintercept = date_end), linetype = "dashed") +
+  geom_line(data = subset(df_day, Date >= min_plot_date), aes(x = Date, y = discharge_forlog), color = col.ark) +
   facet_wrap(~gage_factor, scales = "free_x", ncol = 1, strip.position = "right") +
   scale_x_date(name = "Date", limits = c(ymd(min_plot_date), ymd(last_date)), expand = c(0,0), date_labels = "%Y") +
-  geom_line(data = subset(df_day, Date >= min_plot_date), aes(x = Date, y = discharge_forlog), color = col.ark) +
   scale_y_log10(name = "Mean Daily Discharge [m\u00b3/s]", 
                 breaks = scales::trans_breaks("log10", function(x) 10^x),
                 labels = scales::trans_format("log10", scales::math_format(10^.x)),
                 expand = c(0, 0))
-ggsave(file.path("figures+tables", "Streamflow-Upstream_PlotArk+PawneeHydrographs.png"),
+ggsave(file.path("figures+tables", "Streamflow-Upstream_PlotArk+PawneeHydrographs_NoRegimes.png"),
        width = 190, height = 140, units = "mm")
+ggsave(file.path("figures+tables", "Streamflow-Upstream_PlotArk+PawneeHydrographs_NoRegimes.pdf"),
+       width = 190, height = 140, units = "mm", device = cairo_pdf)
 
 sum(subset(df_dry_all, gagename == "Pawnee at Rozel" & last_noflow_date >= ymd("1998-10-01") & last_noflow_date <= ymd("2018-05-28"))$total_noflow_days)
 length(seq(ymd("1998-10-01"), ymd("2018-05-31"), by = "day"))

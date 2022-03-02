@@ -31,11 +31,10 @@ ggplot() +
   geom_rect(data = df_dry_periods, aes(xmin = first_noflow_date, xmax = last_noflow_date,
                                        ymin = min_q, ymax = Inf), 
             color = "transparent", fill = col.cat.yel, alpha = 0.4) +
-  geom_line() +
   geom_hline(yintercept = min_q, color = col.gray) +
+  geom_line(data = subset(df_day, Date >= min_plot_date), aes(x = Date, y = discharge_forlog), color = col.ark) +
   facet_wrap(~gage_factor, scales = "free_x", ncol = 1, strip.position = "right") +
   scale_x_date(name = "Date", limits = c(ymd(min_plot_date), ymd(last_date)), expand = c(0,0), date_labels = "%Y") +
-  geom_line(data = subset(df_day, Date >= min_plot_date), aes(x = Date, y = discharge_forlog), color = col.ark) +
   scale_y_log10(name = "Mean Daily Discharge [m\u00b3/s]", 
                 breaks = scales::trans_breaks("log10", function(x) 10^x),
                 labels = scales::trans_format("log10", scales::math_format(10^.x)),
