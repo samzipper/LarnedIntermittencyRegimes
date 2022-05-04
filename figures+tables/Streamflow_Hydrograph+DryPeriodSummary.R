@@ -88,3 +88,6 @@ p_combo <-
 
 ggsave(file.path("figures+tables", "Streamflow_Hydrograph+DryPeriodSummary.png"),
        p_combo, width = 190, height = 140, units = "mm")
+
+ggsave(file.path("figures+tables", "Figure3.pdf"),
+       p_combo, width = 190, height = 140, units = "mm", device = cairo_pdf)

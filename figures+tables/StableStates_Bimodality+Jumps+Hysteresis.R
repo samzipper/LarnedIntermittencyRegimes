@@ -163,6 +163,9 @@ p_hist_mo.yr <-
 ggsave(file.path("figures+tables", "StableStates_Bimodality-Hist-Mo+Yr.png"),
        p_hist_mo.yr, width = 95, height = 130, units = "mm")
 
+ggsave(file.path("figures+tables", "Figure5.pdf"),
+       p_hist_mo.yr, width = 95, height = 130, units = "mm", device = cairo_pdf)
+
 # stats on monthly skew
 sum(df_Q_mo$prc_noflow <= 0.1)
 sum(df_Q_mo$prc_noflow >= 0.9)
